@@ -1,0 +1,10 @@
+﻿  GraphicsManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\InputManager.h(30,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\InputManager.h(31,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(18,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(18,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  InputManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\InputManager.h(30,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\InputManager.h(31,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Game550OpenGLDemo.vcxproj -> C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Debug\Game550OpenGLDemo.exe
