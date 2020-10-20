@@ -17,6 +17,7 @@ public:
 	virtual void FrameEnd() override;
 
 	virtual void Initialize() override {};
+	virtual void End() override {};
 
 	void SetFPS(int nFPS);
 

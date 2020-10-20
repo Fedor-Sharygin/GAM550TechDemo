@@ -7,7 +7,13 @@
 
 GraphicsManager::GraphicsManager()
 	:
-	Manager(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER)
+	Manager(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER),
+	scrHeight(600.0f),
+	scrWidth(800.0f)
+{}
+
+
+void GraphicsManager::Initialize()
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -39,6 +45,18 @@ GraphicsManager::GraphicsManager()
 	// configure global opengl state
 	// -----------------------------
 	glEnable(GL_DEPTH_TEST);
+
+	baseShader = new Shader("Graphics/Shaders/textureShader.vs", "Graphics/Shaders/textureShader.fs");
+	baseCamera = new Camera(glm::vec3(0.0f, 0.0f, 3.0f));
+}
+
+
+void GraphicsManager::End()
+{
+	glfwTerminate();
+	delete baseWindow;
+	delete baseShader;
+	delete baseCamera;
 }
 
 

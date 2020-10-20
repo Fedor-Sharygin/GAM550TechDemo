@@ -3,9 +3,15 @@
 #include "Graphics//Shader.h"
 #include "Graphics//Camera.h"
 
+#include "Managers//Manager.h"
+#include "Managers//GraphicsManager.h"
+#include "Managers//FrameRateManager.h"
+#include "Managers//InputManager.h"
+#include "Managers//AssetManager.h"
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
+void processInput(GraphicsManager* grManager, InputManager* inManager);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
@@ -13,8 +19,8 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-// camera
-Camera* camera = new Camera(glm::vec3(0.0f, 0.0f, 3.0f));
+// mGrManager->baseCamera
+// mGrManager->baseCamera* mGrManager->baseCamera = new mGrManager->baseCamera(glm::vec3(0.0f, 0.0f, 3.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -26,40 +32,17 @@ float lastFrame = 0.0f;
 
 int main()
 {
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    GraphicsManager* mGrManager = new GraphicsManager();
+    mGrManager->Initialize();
 
-	GLFWwindow* m_window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "GAM550Demo", nullptr, nullptr);
-	if (nullptr == m_window)
-	{
-		std::cout << "Failed to create a GLFW window" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
-	glfwMakeContextCurrent(m_window);
-    glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
-    glfwSetCursorPosCallback(m_window, mouse_callback);
-    glfwSetScrollCallback(m_window, scroll_callback);
+    AssetManager* mAssetManager = new AssetManager();
+    mAssetManager->Initialize();
 
-    // tell GLFW to capture our mouse
-    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    InputManager* mInputManager = new InputManager(mGrManager->baseWindow);
+    mInputManager->Initialize();
 
-	if (0 == gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to initialize GLAD" << std::endl;
-		return -1;
-	}
-
-    // configure global opengl state
-    // -----------------------------
-    glEnable(GL_DEPTH_TEST);
-
-	// build and compile our shader program
-	// ------------------------------------
-	Shader* m_shader = new Shader("Graphics/Shaders/textureShader.vs", "Graphics/Shaders/textureShader.fs"); // you can name your shader files however you like
+    FrameRateManager* mFrRManager = new FrameRateManager();
+    mFrRManager->Initialize();
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -193,11 +176,11 @@ int main()
 
     // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
     // -------------------------------------------------------------------------------------------
-    m_shader->Use(); // don't forget to activate/use the shader before setting uniforms!
+    mGrManager->baseShader->Use(); // don't forget to activate/use the shader before setting uniforms!
     // either set it manually like so:
-    glUniform1i(glGetUniformLocation(m_shader->ID, "texture1"), 0);
+    glUniform1i(glGetUniformLocation(mGrManager->baseShader->ID, "texture1"), 0);
     // or set it via the texture class
-    m_shader->SetInt("texture2", 1);
+    mGrManager->baseShader->SetInt("texture2", 1);
 
 
     // uncomment this call to draw in wireframe polygons.
@@ -206,16 +189,16 @@ int main()
 
     // render loop
     // -----------
-	while (0 == glfwWindowShouldClose(m_window))
+	while (0 == glfwWindowShouldClose(mGrManager->baseWindow))
 	{
-        // per-frame time logic
-        // --------------------
-        float currentFrame = glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
+        mFrRManager->FrameStart();
+
+        deltaTime = mFrRManager->GetFrameTime();
+
+        mInputManager->Update(deltaTime);
 
 		// input
-		processInput(m_window);
+		processInput(mGrManager, mInputManager);
 
         // render
         // ------
@@ -228,15 +211,15 @@ int main()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
 
-		m_shader->Use();
+		mGrManager->baseShader->Use();
 
         // pass projection matrix to shader (note that in this case it could change every frame)
-        glm::mat4 projection = glm::perspective(glm::radians(camera->Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        m_shader->setMat4("projection", projection);
+        glm::mat4 projection = glm::perspective(glm::radians(mGrManager->baseCamera->Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        mGrManager->baseShader->setMat4("projection", projection);
 
-        // camera/view transformation
-        glm::mat4 view = camera->GetViewMatrix();
-        m_shader->setMat4("view", view);
+        // mGrManager->baseCamera/view transformation
+        glm::mat4 view = mGrManager->baseCamera->GetViewMatrix();
+        mGrManager->baseShader->setMat4("view", view);
 
         // render boxes
         glBindVertexArray(VAO);
@@ -249,15 +232,17 @@ int main()
             if (i % 3 == 0)  // every 3rd iteration (including the first) we set the angle using GLFW's time function.
                 angle = glfwGetTime() * 25.0f;
             model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-            m_shader->setMat4("model", model);
+            mGrManager->baseShader->setMat4("model", model);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 
 		// check and call events
 		// swap buffers
-		glfwSwapBuffers(m_window);
+		glfwSwapBuffers(mGrManager->baseWindow);
 		glfwPollEvents();
+
+        mFrRManager->FrameEnd();
 	}
 
     // optional: de-allocate all resources once they've outlived their purpose:
@@ -267,7 +252,13 @@ int main()
 //    glDeleteBuffers(1, &EBO);
 
 
-	glfwTerminate();
+//	glfwTerminate();
+
+    delete mGrManager;
+    delete mFrRManager;
+    delete mInputManager;
+    delete mAssetManager;
+
 	return 0;
 }
 
@@ -277,29 +268,32 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-void processInput(GLFWwindow* window)
+void processInput(GraphicsManager* grManager, InputManager* inManager)
 {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if (true == inManager->KeyPressed(GLFW_KEY_ESCAPE))
     {
-        glfwSetWindowShouldClose(window, true);
+        glfwSetWindowShouldClose(grManager->baseWindow, true);
     }
 
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    if (true == inManager->KeyPressed(GLFW_KEY_W))
     {
-        camera->ProcessKeyboard(CAMERA_MOVEMENT::FORWARD, deltaTime);
+        grManager->baseCamera->ProcessKeyboard(CAMERA_MOVEMENT::FORWARD, deltaTime);
     }
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    if (true == inManager->KeyPressed(GLFW_KEY_S))
     {
-        camera->ProcessKeyboard(CAMERA_MOVEMENT::BACKWARD, deltaTime);
+        grManager->baseCamera->ProcessKeyboard(CAMERA_MOVEMENT::BACKWARD, deltaTime);
     }
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    if (true == inManager->KeyPressed(GLFW_KEY_A))
     {
-        camera->ProcessKeyboard(CAMERA_MOVEMENT::LEFT, deltaTime);
+        grManager->baseCamera->ProcessKeyboard(CAMERA_MOVEMENT::LEFT, deltaTime);
     }
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    if (true == inManager->KeyPressed(GLFW_KEY_D))
     {
-        camera->ProcessKeyboard(CAMERA_MOVEMENT::RIGHT, deltaTime);
+        grManager->baseCamera->ProcessKeyboard(CAMERA_MOVEMENT::RIGHT, deltaTime);
     }
+
+    grManager->baseCamera->ProcessMouseMovement(inManager->xMouse - inManager->prevXMouse, inManager->prevYMouse - inManager->yMouse);
+    grManager->baseCamera->ProcessMouseScroll(inManager->scrollDifference);
 }
 
 // glfw: whenever the mouse moves, this callback is called
@@ -319,13 +313,13 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     lastX = xpos;
     lastY = ypos;
 
-    camera->ProcessMouseMovement(xoffset, yoffset);
+//    mGrManager->baseCamera->ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    camera->ProcessMouseScroll(yoffset);
+//    mGrManager->baseCamera->ProcessMouseScroll(yoffset);
 }
 

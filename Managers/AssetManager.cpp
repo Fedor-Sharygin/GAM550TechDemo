@@ -5,6 +5,10 @@
 AssetManager::AssetManager()
 	:
 	Manager(MANAGER_TYPE::TYPE_ASSET_MANAGER)
+{}
+
+
+void AssetManager::Initialize()
 {
 	resourceDirectory = "Resources";
 	textureDirectory = "Textures";
@@ -12,22 +16,25 @@ AssetManager::AssetManager()
 }
 
 
-unsigned int AssetManager::LoadTexture(std::string name)
+void AssetManager::End()
 {
-	unsigned int textureRet;
+    
+}
 
-	/// if the texture name already exists in map => return it
-	/// the texture was already loaded
-	if (textures.end() != textures.find(name))
+
+unsigned int& AssetManager::LoadTexture(std::string name)
+{
+	unsigned int* textureRet;
+
+    /// the texture was not found => load it
+	if (textures.end() == textures.find(name))
 	{
-		textureRet = textures[name];
-	}
-	else	/// the texture was not found => load it
-	{
+        unsigned int textVal;
+
         std::string fullPath = resourceDirectory + textureDirectory + name;
 
-        glGenTextures(1, &textureRet);
-        glBindTexture(GL_TEXTURE_2D, textureRet);
+        glGenTextures(1, &textVal);
+        glBindTexture(GL_TEXTURE_2D, textVal);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -46,10 +53,14 @@ unsigned int AssetManager::LoadTexture(std::string name)
         }
         stbi_image_free(data);
 
-        textures[name] = textureRet;
+        textures[name] = textVal;
 	}
 
+	/// if the texture name already exists in map => return it
+	/// the texture was already loaded
+	textureRet = &textures[name];
+
     /// Return the found/loaded texture
-    return textureRet;
+    return *textureRet;
 }
 

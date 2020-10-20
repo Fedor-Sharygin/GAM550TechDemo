@@ -16,26 +16,31 @@ public:
 	virtual void FrameStart() override {};
 	virtual void FrameEnd() override {};
 
-	virtual void Initialize() override {};
+	virtual void Initialize() override;
+	virtual void End() override;
 
 	static void MouseMove(GLFWwindow* window, double xpos, double ypos)
 	{
+		mouseMoved = true;
 		if (false == mouseEntered)
 		{
+			xMouse = xpos;
+			yMouse = ypos;
 			prevXMouse = xpos;
 			prevYMouse = ypos;
 			mouseEntered = true;
 		}
 
-		float xoffset = xpos - prevXMouse;
-		float yoffset = prevYMouse - ypos; // reversed since y-coordinates go from bottom to top
+		prevXMouse = xMouse;
+		prevYMouse = yMouse;
 
-		prevXMouse = xpos;
-		prevYMouse = ypos;
+		xMouse = xpos;
+		yMouse = ypos;
 	};
 
 	static void MouseScroll(GLFWwindow* window, double xoffset, double yoffset)
 	{
+		mouseScrolled = true;
 		scrollDifference = yoffset;
 	};
 
@@ -49,7 +54,7 @@ public:
 	bool KeyUp(int key);
 public:
 	/// Static mouse parameters
-	static bool mouseEntered;
+	static bool mouseEntered, mouseMoved, mouseScrolled;
 	static double xMouse, yMouse;
 	static double prevXMouse, prevYMouse;
 	static double scrollDifference;

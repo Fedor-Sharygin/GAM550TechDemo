@@ -16,9 +16,10 @@ public:
 	virtual void FrameStart() override {};
 	virtual void FrameEnd() override {};
 
-	virtual void Initialize() override {};
+	virtual void Initialize() override;
+	virtual void End() override;
 
-	unsigned int LoadTexture(std::string name);
+	unsigned int& LoadTexture(std::string name);
 public:
 private:
 private:

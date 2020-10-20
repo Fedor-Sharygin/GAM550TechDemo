@@ -8,8 +8,7 @@ unsigned int FrameRateManager::frameCount = 0;
 FrameRateManager::FrameRateManager()
 	:
 	Manager(MANAGER_TYPE::TYPE_FRAMERATE_MANAGER)
-{
-}
+{}
 
 
 void FrameRateManager::SetFPS(int nFPS)

@@ -26,6 +26,7 @@ public:
 	virtual void FrameEnd() = 0;
 
 	virtual void Initialize() = 0;
+	virtual void End() = 0;
 public:
 	MANAGER_TYPE mType;
 private:

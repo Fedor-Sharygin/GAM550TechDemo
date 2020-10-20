@@ -2,7 +2,7 @@
 #include "InputManager.h"
 
 
-bool InputManager::mouseEntered = false;
+bool InputManager::mouseEntered = false, InputManager::mouseMoved = false, InputManager::mouseScrolled = false;
 double InputManager::xMouse = 0.0, InputManager::yMouse = 0.0;
 double InputManager::prevXMouse = 0.0, InputManager::prevYMouse = 0.0;
 double InputManager::scrollDifference = 0.0;
@@ -12,6 +12,10 @@ InputManager::InputManager(GLFWwindow* nWnd)
 	:
 	Manager(MANAGER_TYPE::TYPE_INPUT_MANAGER),
 	windowPtr(nWnd)
+{}
+
+
+void InputManager::Initialize()
 {
 	keyStates[GLFW_KEY_W] = false;
 	keyStates[GLFW_KEY_A] = false;
@@ -43,6 +47,12 @@ InputManager::InputManager(GLFWwindow* nWnd)
 }
 
 
+void InputManager::End()
+{
+	windowPtr = nullptr;
+}
+
+
 void InputManager::Update(float dt)
 {
 	prevKeyStates = keyStates;
@@ -55,6 +65,26 @@ void InputManager::Update(float dt)
 	for (auto& [button, _] : mouseStates)
 	{
 		mouseStates[button] = glfwGetMouseButton(windowPtr, button);
+	}
+
+	/// Override mouse states if nothing is happening
+	if (true == mouseMoved)
+	{
+		mouseMoved = false;
+	}
+	else if (false == mouseMoved)
+	{
+		prevXMouse = xMouse;
+		prevYMouse = yMouse;
+	}
+	
+	if (true == mouseScrolled)
+	{
+		mouseScrolled = false;
+	}
+	else if (false == mouseScrolled)
+	{
+		scrollDifference = 0.0f;
 	}
 }
 
