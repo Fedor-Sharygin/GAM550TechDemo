@@ -10,9 +10,9 @@ AssetManager::AssetManager()
 
 void AssetManager::Initialize()
 {
-	resourceDirectory = "Resources";
-	textureDirectory = "Textures";
-	audioDirectory = "Audio";
+	resourceDirectory = "Resources/";
+	textureDirectory = "Textures/";
+	audioDirectory = "Audio/";
 }
 
 
@@ -33,6 +33,8 @@ unsigned int& AssetManager::LoadTexture(std::string name)
 
         std::string fullPath = resourceDirectory + textureDirectory + name;
 
+        bool png = std::string::npos != name.find(".png", name.length() - 5);
+
         glGenTextures(1, &textVal);
         glBindTexture(GL_TEXTURE_2D, textVal);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -44,7 +46,14 @@ unsigned int& AssetManager::LoadTexture(std::string name)
         unsigned char* data = stbi_load(fullPath.c_str(), &width, &height, &nrChannels, 0);
         if (nullptr != data)
         {
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            if (true == png)
+            {
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+            }
+            else if (false == png)
+            {
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            }
             glGenerateMipmap(GL_TEXTURE_2D);
         }
         else
