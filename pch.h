@@ -24,3 +24,6 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+#include <FMOD/inc/fmod.h>
+#include <FMOD/inc/fmod.hpp>
+
