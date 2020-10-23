@@ -5,3 +5,14 @@
 
 
 
+void Component::SetOwner(GameObject* nOwner)
+{
+	owner = nOwner;
+}
+
+GameObject* Component::GetOwner() const
+{
+	return owner;
+}
+
+

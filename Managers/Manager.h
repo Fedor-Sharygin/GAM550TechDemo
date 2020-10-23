@@ -11,26 +11,34 @@ enum class MANAGER_TYPE
 	TYPE_FRAMERATE_MANAGER,
 	TYPE_INPUT_MANAGER,
 	TYPE_ASSET_MANAGER,
+	TYPE_GO_MANAGER,
 	TYPE_DEFAULT
 };
 
 
+class Component;
+
 class Manager
 {
 public:
-	Manager(MANAGER_TYPE nType) : mType(nType) {};
-	virtual ~Manager() {};
+	Manager(MANAGER_TYPE nType) : mType(nType), comps(std::vector<Component*>()) {};
+	virtual ~Manager();
 
-	virtual void Update(float dt) = 0;
-	virtual void FrameStart() = 0;
-	virtual void FrameEnd() = 0;
+	virtual void Update(float dt);	/// Update all of the components associated with this manager
+	virtual void FrameStart();		/// FrameStart all of the components associated with this manager
+	virtual void FrameEnd();		/// FrameEnd all of the components associated with this manager
 
 	virtual void Initialize() = 0;
 	virtual void End() = 0;
+
+	void SubscribeComponent(Component* nc);
 public:
 	MANAGER_TYPE mType;
 private:
 private:
+	/// saves all of the created components
+	/// that this manager works with
+	std::vector<Component*> comps;
 };
 
 

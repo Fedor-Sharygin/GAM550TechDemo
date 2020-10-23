@@ -3,23 +3,43 @@
 #ifndef _COMP_H_
 #define _COMP_H_
 
+
+
+enum class COMPONENT_TYPE
+{
+	TYPE_TRANSFORM,
+	TYPE_MODEL,
+	TYPE_AUDIO,
+	TYPE_SFX,
+	TYPE_BODY,
+	TYPE_AI,
+	TYPE_CAMERA,
+	TYPE_DEFAULT
+};
+
+
 class GameObject;
 
 class Component
 {
 public:
-	Component();
-	~Component();
+	Component(COMPONENT_TYPE nType = COMPONENT_TYPE::TYPE_DEFAULT) : cType(nType), owner(nullptr) {};
+	virtual ~Component() {};
 
-	void Update(float dt);
-	void FrameStart();
-	void FrameEnd();
+	virtual void Update(float dt) = 0;
+	virtual void FrameStart() = 0;
+	virtual void FrameEnd() = 0;
 
-	void Initialize();
-	void End();
+	virtual void Initialize() = 0;
+	virtual void End() = 0;
+
+	void SetOwner(GameObject* nOwner);
+	GameObject* GetOwner() const;
 public:
+	COMPONENT_TYPE cType;
 private:
 private:
+	GameObject* owner;
 };
 
 #endif
