@@ -29,6 +29,7 @@ GameManager::GameManager()
 	gameManagers[mAssetManager->mType] = mAssetManager;
 	gameManagers[mFRManager->mType] = mFRManager;
 	gameManagers[mInputManager->mType] = mInputManager;
+	////// Test the push thing ///////
 }
 
 GameManager::~GameManager()
