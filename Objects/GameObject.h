@@ -50,7 +50,7 @@ public:
 		/// if we don't have this component => return nullptr
 		if (goComponents.end() == goComponents.find(std::type_index(typeid(TComp))))
 		{
-			return nullptr
+			return nullptr;
 		}
 
 		/// otherwise => return the found component

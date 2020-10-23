@@ -3,14 +3,13 @@
 #ifndef _GAME_MANAGER_H_
 #define _GAME_MANAGER_H_
 
+#include ".//Objects//GameObject.h"
 
 class Manager;
 enum class MANAGER_TYPE;
 
 class Component;
 enum class COMPONENT_TYPE;
-
-class GameObject;
 
 class GameManager
 {
@@ -45,7 +44,8 @@ public:
 		/// the corresponding manager and return it
 		gameManagers[CTtoMT[((Component*)retComp)->cType]]->SubscribeComponent(retComp);
 		return retComp;
-	}
+	};
+
 public:
 private:
 private:

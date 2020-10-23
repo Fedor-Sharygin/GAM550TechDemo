@@ -160,7 +160,7 @@
     </ClCompile>
     <ClCompile Include="Managers\AssetManager.cpp" />
     <ClCompile Include="Managers\FrameRateManager.cpp" />
-    <ClCompile Include="Managers\GameObjectManager.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Managers\GraphicsManager.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\Manager.cpp" />
@@ -177,10 +177,11 @@
     <ClInclude Include="Graphics\Shader.h" />
     <ClInclude Include="Managers\AssetManager.h" />
     <ClInclude Include="Managers\FrameRateManager.h" />
-    <ClInclude Include="Managers\GameObjectManager.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Managers\GraphicsManager.h" />
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\Manager.h" />
+    <ClInclude Include="Managers\Managers.h" />
     <ClInclude Include="Objects\Component.h" />
     <ClInclude Include="Objects\GameObject.h" />
     <ClInclude Include="pch.h" />
