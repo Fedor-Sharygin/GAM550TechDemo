@@ -28,4 +28,6 @@
 
 #include <FMOD/inc/fmod.h>
 #include <FMOD/inc/fmod.hpp>
+#include <FMOD/inc/fmod_errors.h>
+#include <FMOD/inc/fmod_output.h>
 

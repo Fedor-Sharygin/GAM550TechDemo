@@ -159,6 +159,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Managers\AssetManager.cpp" />
+    <ClCompile Include="Managers\AudioManager.cpp" />
     <ClCompile Include="Managers\FrameRateManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Managers\GraphicsManager.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Graphics\Model.h" />
     <ClInclude Include="Graphics\Shader.h" />
     <ClInclude Include="Managers\AssetManager.h" />
+    <ClInclude Include="Managers\AudioManager.h" />
     <ClInclude Include="Managers\FrameRateManager.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Managers\GraphicsManager.h" />
