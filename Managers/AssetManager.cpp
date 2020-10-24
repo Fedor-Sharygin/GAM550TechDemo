@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "AssetManager.h"
 
+#include "..//Graphics//Model.h"
+
 
 AssetManager::AssetManager()
 	:
@@ -11,8 +13,14 @@ AssetManager::AssetManager()
 void AssetManager::Initialize()
 {
 	resourceDirectory = "Resources/";
+
 	textureDirectory = "Textures/";
+    modelDirectory = "Models/";
 	audioDirectory = "Audio/";
+
+    textures = std::unordered_map<std::string, unsigned int>();
+    models = std::unordered_map<std::string, Model*>();
+    audioMusic = std::unordered_map<std::string, FMOD::Sound*>();
 }
 
 
@@ -75,5 +83,46 @@ unsigned int& AssetManager::LoadTexture(std::string name)
 
     /// Return the found/loaded texture
     return *textureRet;
+}
+
+
+Model* AssetManager::LoadModel(std::string name)
+{
+    /// if we haven't found the loaded name
+    /// load and return it
+    if (models.end() == models.find(name))
+    {
+        std::string fullPath = resourceDirectory + modelDirectory + name;
+        Model* newModel = new Model(fullPath);
+        models[name] = newModel;
+        return newModel;
+    }
+
+    /// otherwise, return the loaded model
+    return models[name];
+}
+
+
+FMOD::Sound* AssetManager::LoadSound(std::string name, FMOD::System* mAManSystem, FMOD_MODE soundLoadMode)
+{
+    /// if we haven't found the loaded name
+    /// load and return it
+    if (audioMusic.end() == audioMusic.find(name))
+    {
+        std::string fullPath = resourceDirectory + audioDirectory + name;
+        FMOD::Sound* newSound = nullptr;
+        FMOD_RESULT result = mAManSystem->createSound(fullPath.c_str(), soundLoadMode, nullptr, &newSound);
+        if (FMOD_OK != result)
+        {
+            std::cerr << "FMOD Error! " << result << " " << FMOD_ErrorString(result) << std::endl;
+            exit(-1);
+        }
+
+        audioMusic[name] = newSound;
+        return newSound;
+    }
+
+    /// otherwise, return the loaded sound
+    return audioMusic[name];
 }
 

@@ -36,9 +36,11 @@ public:
 	MANAGER_TYPE mType;
 private:
 private:
+protected:
 	/// saves all of the created components
 	/// that this manager works with
 	std::vector<Component*> comps;
+protected:
 };
 
 
