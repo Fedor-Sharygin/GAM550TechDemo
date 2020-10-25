@@ -2,14 +2,16 @@
 #include "GameManager.h"
 
 #include ".//Managers//Managers.h"
+#include ".//Objects//Components//Components.h"
 
 
 
 GameManager::GameManager()
 {
 	CTtoMT = {
-		{COMPONENT_TYPE::TYPE_AUDIO, MANAGER_TYPE::TYPE_AUDIO_MANAGER},
-		{COMPONENT_TYPE::TYPE_BODY, MANAGER_TYPE::TYPE_PHYSICS_MANAGER}
+		{COMPONENT_TYPE::TYPE_AUDIO,	MANAGER_TYPE::TYPE_AUDIO_MANAGER},
+		{COMPONENT_TYPE::TYPE_BODY,		MANAGER_TYPE::TYPE_PHYSICS_MANAGER},
+		{COMPONENT_TYPE::TYPE_MODEL,	MANAGER_TYPE::TYPE_GRAPHICS_MANAGER}
 	};
 
 	GraphicsManager* mGrManager = new GraphicsManager();
@@ -24,60 +26,65 @@ GameManager::GameManager()
 	InputManager* mInputManager = new InputManager(mGrManager->baseWindow);
 	mInputManager->Initialize();
 
-	gameManagers[mGrManager->mType] = mGrManager;
-	gameManagers[mAssetManager->mType] = mAssetManager;
+	AudioManager* mAudioManager = new AudioManager();
+
 	gameManagers[mFRManager->mType] = mFRManager;
 	gameManagers[mInputManager->mType] = mInputManager;
+	gameManagers[mGrManager->mType] = mGrManager;
+	gameManagers[mAssetManager->mType] = mAssetManager;
+	gameManagers[mAudioManager->mType] = mAudioManager;
 	////// Test the push thing ///////
 }
 
 GameManager::~GameManager()
-{}
-
-
-void GameManager::Update(float dt)
 {
-	/// Update all of the managers
 	for (auto& [_, man] : gameManagers)
 	{
-		man->Update(dt);
+		man->End();
+		delete man;
+	}
+
+	gameManagers.clear();
+}
+
+
+/// Consider that we only FrSt and FrE
+/// with FrameRateManager
+/// 
+/// no need to update FrameRateManager
+
+void GameManager::Update()
+{
+	float deltaTime = static_cast<FrameRateManager*>(gameManagers[MANAGER_TYPE::TYPE_FRAMERATE_MANAGER])->GetFrameTime();
+
+	/// Update all of the managers
+	for (auto& [type, man] : gameManagers)
+	{
+		if (MANAGER_TYPE::TYPE_FRAMERATE_MANAGER != type)
+		{
+			man->Update(deltaTime);
+		}
 	}
 
 	/// Update the rest of components in GO's
 	for (auto& go : gameObjects)
 	{
-		go->Update(dt);
+		go->Update(deltaTime);
 	}
+
+	glfwPollEvents();
 }
 
 void GameManager::FrameStart()
 {
-	/// FrameStart all of the managers
-	for (auto& [_, man] : gameManagers)
-	{
-		man->FrameStart();
-	}
-
-	/// FrameStart the rest of components in GO's
-	for (auto& go : gameObjects)
-	{
-		go->FrameStart();
-	}
+	gameManagers[MANAGER_TYPE::TYPE_FRAMERATE_MANAGER]->FrameStart();
+	gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]->FrameStart();
 }
 
 void GameManager::FrameEnd()
 {
-	/// FrameEnd all of the managers
-	for (auto& [_, man] : gameManagers)
-	{
-		man->FrameEnd();
-	}
-
-	/// FrameEnd the rest of components in GO's
-	for (auto& go : gameObjects)
-	{
-		go->FrameEnd();
-	}
+	gameManagers[MANAGER_TYPE::TYPE_FRAMERATE_MANAGER]->FrameEnd();
+	gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]->FrameEnd();
 }
 
 
@@ -89,5 +96,39 @@ GameObject* GameManager::CreateGameObject()
 	return nGO;
 }
 
+
+
+GLFWwindow* GameManager::GetGameWindow()
+{
+	return static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER])->baseWindow;
+}
+
+
+
+
+void GameManager::Demo(size_t size)
+{
+	if (2 == size)
+	{
+		/// 1st object (0th)
+		/// test the model loading and draw
+		ModelComponent* fModComp = this->AddComponentTo<ModelComponent>(gameObjects[0]);
+		Transform* fTrans = AddComponentTo<Transform>(gameObjects[0]);
+
+		fModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
+
+		fTrans->SetPosition(glm::vec3(0.0f, 0.0f, -20.0f));
+
+		/// 2nd object (1st)
+		/// test the audio loading and play
+		AudioComponent* sAudComp = this->AddComponentTo<AudioComponent>(gameObjects[1]);
+		sAudComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		sAudComp->PassMediaPlayer(static_cast<AudioManager*>(gameManagers[MANAGER_TYPE::TYPE_AUDIO_MANAGER]));
+		sAudComp->SetSound("sample.wav");
+		sAudComp->SetChannelName("sampleMusic");
+	}
+}
 
 

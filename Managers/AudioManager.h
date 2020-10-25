@@ -20,11 +20,19 @@ public:
 
 	virtual void Initialize() override;
 	virtual void End() override;
+
+	FMOD::System* GetSystem() const;
+
+
+	void StartAudio(FMOD::Sound* pSound, std::string nChannelName);
 public:
 private:
 private:
 	/// Audio studio
 	FMOD::System* mSystem;
+	FMOD::ChannelGroup* mChannelGroup;
+
+	std::unordered_map<std::string, FMOD::Channel*> allChannels;
 };
 
 
