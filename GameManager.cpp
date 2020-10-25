@@ -120,7 +120,7 @@ void GameManager::Demo(size_t size)
 		fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
 
 		fTrans->SetPosition(glm::vec3(0.0f, 0.0f, -20.0f));
-		fTrans->SetScale(glm::vec3((1.0f / 20.0f)));
+		fTrans->SetScale(glm::vec3((1.0f / 2.0f)));
 
 		/// 2nd object (1st)
 		/// test the audio loading and play
