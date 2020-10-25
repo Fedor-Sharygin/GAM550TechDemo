@@ -94,6 +94,11 @@ Model* AssetManager::LoadModel(std::string name)
     {
         std::string fullPath = resourceDirectory + modelDirectory + name;
         Model* newModel = new Model(fullPath);
+        if (nullptr == newModel)
+        {
+            std::cerr << "Error: failed to load model" << std::endl;
+            exit(-1);
+        }
         models[name] = newModel;
         return newModel;
     }

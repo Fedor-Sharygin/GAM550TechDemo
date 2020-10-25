@@ -25,7 +25,10 @@ void GameObject::Update(float dt)
 {
 	for (auto& [_, co] : goComponents)
 	{
-		co->Update(dt);
+		if (COMPONENT_TYPE::TYPE_AUDIO != co->cType)
+		{
+			co->Update(dt);
+		}
 	}
 }
 

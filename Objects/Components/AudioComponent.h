@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _MCOMP_H_
-#define _MCOMP_H_
+#ifndef _ACOMP_H_
+#define _ACOMP_H_
 
 #include "..//Component.h"
 
@@ -25,14 +25,24 @@ public:
 	void SetSound(std::string nName);
 	FMOD::Sound* GetSound() const;
 
+	void SetChannelName(std::string nCName);
+
 	void PassLoader(AssetManager* nLoader);
 	void PassMediaPlayer(AudioManager* nMediaPlayer);
+
+	void StartAudio();
+	void PauseAudio();
+	void StopAudio();
 public:
 private:
 private:
+	bool playing;
 	FMOD::Sound* mSound;
+	
 	AssetManager* loader;
 	AudioManager* mediaPlayer;
+
+	std::string mChannel;
 };
 
 

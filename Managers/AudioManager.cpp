@@ -4,6 +4,18 @@
 #include "..//Objects//Component.h"
 
 
+
+#define ASSERT_RESULT(result)					\
+	if(FMOD_OK != result)						\
+	{											\
+		std::cerr << "FMOD Error! " << result	\
+			<< " " << FMOD_ErrorString(result)	\
+			<< std::endl;						\
+		exit(-1);								\
+	}
+
+
+
 AudioManager::AudioManager()
 	:
 	Manager(MANAGER_TYPE::TYPE_AUDIO_MANAGER),
@@ -22,28 +34,15 @@ AudioManager::~AudioManager()
 void AudioManager::Initialize()
 {
 	/// Create the system and check if it worked
-	FMOD_RESULT result = FMOD::System_Create(&mSystem);
-	if (FMOD_OK != result)
-	{
-		std::cerr << "FMOD Error! " << result << " " << FMOD_ErrorString(result) << std::endl;
-		exit(-1);
-	}
+	ASSERT_RESULT(FMOD::System_Create(&mSystem));
 
 	/// Initialize the system and check for errors
-	result = mSystem->init(512, FMOD_INIT_NORMAL, 0);
-	if (FMOD_OK != result)
-	{
-		std::cerr << "FMOD Error! " << result << " " << FMOD_ErrorString(result) << std::endl;
-		exit(-1);
-	}
+	ASSERT_RESULT(mSystem->init(512, FMOD_INIT_NORMAL, 0));
 
 	/// Create the channel group
-	result = mSystem->createChannelGroup("inGameSFX", &mChannelGroup);
-	if (FMOD_OK != result)
-	{
-		std::cerr << "FMOD Error! " << result << " " << FMOD_ErrorString(result) << std::endl;
-		exit(-1);
-	}
+	ASSERT_RESULT(mSystem->createChannelGroup("inGameSFX", &mChannelGroup));
+
+	allChannels = std::unordered_map<std::string, FMOD::Channel*>();
 }
 
 void AudioManager::End()
@@ -75,5 +74,25 @@ FMOD::System* AudioManager::GetSystem() const
 {
 	return mSystem;
 }
+
+
+
+
+void AudioManager::StartAudio(FMOD::Sound* pSound, std::string nChannelName)
+{
+	/// look if passed channel name already exists
+	/// if not => create a new channel and play sound there
+	if (allChannels.end() == allChannels.find(nChannelName))
+	{
+		FMOD::Channel* nChannel = nullptr;
+		ASSERT_RESULT(mSystem->playSound(pSound, mChannelGroup, false, &nChannel));
+		allChannels[nChannelName] = nChannel;
+	}
+	else	/// otherwise => play on existing channel
+	{
+		ASSERT_RESULT(mSystem->playSound(pSound, mChannelGroup, false, &allChannels[nChannelName]));
+	}
+}
+
 
 

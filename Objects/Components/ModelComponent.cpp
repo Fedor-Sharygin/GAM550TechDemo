@@ -40,8 +40,6 @@ void ModelComponent::Draw()
 	Transform* goTr = static_cast<Transform*>(owner->GetComponent<Transform>());
 
 	Shader* mShader = drawer->baseShader;
-	
-	mShader->Use();
 
 	/// set the base matrix
 	glm::mat4 model = glm::mat4(1.0f);
@@ -67,8 +65,6 @@ void ModelComponent::Draw()
 	glUniformMatrix4fv(loc, 1, GL_FALSE, value_ptr(model));
 
 	mModel->Draw(mShader);
-
-	mShader->Unuse();
 }
 
 

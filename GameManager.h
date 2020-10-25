@@ -17,7 +17,7 @@ public:
 	GameManager();
 	~GameManager();
 
-	void Update(float dt);
+	void Update();
 	void FrameStart();
 	void FrameEnd();
 
@@ -46,6 +46,14 @@ public:
 		return retComp;
 	};
 
+
+	GLFWwindow* GetGameWindow();
+
+
+	/// Used for demo of audio and model components
+	/// size is used in case we have more than 2 objects
+	/// (for future demos)
+	void Demo(size_t size);
 public:
 private:
 private:
