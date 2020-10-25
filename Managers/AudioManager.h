@@ -20,11 +20,14 @@ public:
 
 	virtual void Initialize() override;
 	virtual void End() override;
+
+	FMOD::System* GetSystem() const;
 public:
 private:
 private:
 	/// Audio studio
 	FMOD::System* mSystem;
+	FMOD::ChannelGroup* mChannelGroup;
 };
 
 

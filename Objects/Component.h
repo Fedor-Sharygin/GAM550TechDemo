@@ -39,6 +39,8 @@ public:
 	COMPONENT_TYPE cType;
 private:
 private:
+protected:
+protected:
 	GameObject* owner;
 };
 

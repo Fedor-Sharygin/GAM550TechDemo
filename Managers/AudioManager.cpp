@@ -7,7 +7,7 @@
 AudioManager::AudioManager()
 	:
 	Manager(MANAGER_TYPE::TYPE_AUDIO_MANAGER),
-	mSystem(nullptr)
+	mSystem(nullptr), mChannelGroup(nullptr)
 {
 	Initialize();
 }
@@ -31,6 +31,14 @@ void AudioManager::Initialize()
 
 	/// Initialize the system and check for errors
 	result = mSystem->init(512, FMOD_INIT_NORMAL, 0);
+	if (FMOD_OK != result)
+	{
+		std::cerr << "FMOD Error! " << result << " " << FMOD_ErrorString(result) << std::endl;
+		exit(-1);
+	}
+
+	/// Create the channel group
+	result = mSystem->createChannelGroup("inGameSFX", &mChannelGroup);
 	if (FMOD_OK != result)
 	{
 		std::cerr << "FMOD Error! " << result << " " << FMOD_ErrorString(result) << std::endl;
@@ -61,5 +69,11 @@ void AudioManager::Update(float dt)
 	}
 }
 
+
+
+FMOD::System* AudioManager::GetSystem() const
+{
+	return mSystem;
+}
 
 

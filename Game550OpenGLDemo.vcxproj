@@ -166,6 +166,9 @@
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\Manager.cpp" />
     <ClCompile Include="Objects\Component.cpp" />
+    <ClCompile Include="Objects\Components\AudioComponent.cpp" />
+    <ClCompile Include="Objects\Components\ModelComponent.cpp" />
+    <ClCompile Include="Objects\Components\Transform.cpp" />
     <ClCompile Include="Objects\GameObject.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -185,6 +188,9 @@
     <ClInclude Include="Managers\Manager.h" />
     <ClInclude Include="Managers\Managers.h" />
     <ClInclude Include="Objects\Component.h" />
+    <ClInclude Include="Objects\Components\AudioComponent.h" />
+    <ClInclude Include="Objects\Components\ModelComponent.h" />
+    <ClInclude Include="Objects\Components\Transform.h" />
     <ClInclude Include="Objects\GameObject.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
