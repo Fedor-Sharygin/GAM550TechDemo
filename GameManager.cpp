@@ -40,7 +40,6 @@ GameManager::~GameManager()
 {
 	for (auto& [_, man] : gameManagers)
 	{
-		man->End();
 		delete man;
 	}
 
@@ -108,7 +107,12 @@ GLFWwindow* GameManager::GetGameWindow()
 
 void GameManager::Demo(size_t size)
 {
-	if (2 == size)
+	for (size_t i = 0; i < size; ++i)
+	{
+		this->CreateGameObject();
+	}
+
+	if (3 == size)
 	{
 		/// 1st object (0th)
 		/// test the model loading and draw
@@ -129,6 +133,12 @@ void GameManager::Demo(size_t size)
 		sAudComp->PassMediaPlayer(static_cast<AudioManager*>(gameManagers[MANAGER_TYPE::TYPE_AUDIO_MANAGER]));
 		sAudComp->SetSound("sample.wav");
 		sAudComp->SetChannelName("sampleMusic");
+
+		/// 3rd object (2nd)
+		/// test the control
+		ControlComponent* tContr = this->AddComponentTo<ControlComponent>(gameObjects[2]);
+		tContr->PassControlee(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		tContr->PassInputStream(static_cast<InputManager*>(gameManagers[MANAGER_TYPE::TYPE_INPUT_MANAGER]));
 	}
 }
 

@@ -7,6 +7,7 @@
 #include "AudioComponent.h"
 #include "ModelComponent.h"
 #include "Transform.h"
+#include "ControlComponent.h"
 
 #endif
 

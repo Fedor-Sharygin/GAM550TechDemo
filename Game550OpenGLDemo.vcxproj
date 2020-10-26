@@ -167,6 +167,7 @@
     <ClCompile Include="Managers\Manager.cpp" />
     <ClCompile Include="Objects\Component.cpp" />
     <ClCompile Include="Objects\Components\AudioComponent.cpp" />
+    <ClCompile Include="Objects\Components\ControlComponent.cpp" />
     <ClCompile Include="Objects\Components\ModelComponent.cpp" />
     <ClCompile Include="Objects\Components\Transform.cpp" />
     <ClCompile Include="Objects\GameObject.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Objects\Component.h" />
     <ClInclude Include="Objects\Components\AudioComponent.h" />
     <ClInclude Include="Objects\Components\Components.h" />
+    <ClInclude Include="Objects\Components\ControlComponent.h" />
     <ClInclude Include="Objects\Components\ModelComponent.h" />
     <ClInclude Include="Objects\Components\Transform.h" />
     <ClInclude Include="Objects\GameObject.h" />
