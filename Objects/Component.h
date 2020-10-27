@@ -14,11 +14,13 @@ enum class COMPONENT_TYPE
 	TYPE_BODY,
 	TYPE_AI,
 	TYPE_CAMERA,
+	TYPE_CONTROL,
 	TYPE_DEFAULT
 };
 
 
 class GameObject;
+class Event;
 
 class Component
 {
@@ -32,6 +34,8 @@ public:
 
 	virtual void Initialize() = 0;
 	virtual void End() = 0;
+
+	virtual void HandleEvent(Event* nEvent) = 0;
 
 	void SetOwner(GameObject* nOwner);
 	GameObject* GetOwner() const;

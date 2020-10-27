@@ -1,2 +1,15 @@
 ﻿  GameManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  EventManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  PhysicsManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  AudioComponent.cpp
+  Body.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  Generating Code...
   Game550OpenGLDemo.vcxproj -> C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Debug\Game550OpenGLDemo.exe

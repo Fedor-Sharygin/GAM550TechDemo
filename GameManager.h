@@ -3,7 +3,9 @@
 #ifndef _GAME_MANAGER_H_
 #define _GAME_MANAGER_H_
 
+#include ".//Managers//Events//Events.h"
 #include ".//Objects//GameObject.h"
+#include ".//Managers//EventManager.h"
 
 class Manager;
 enum class MANAGER_TYPE;
@@ -42,7 +44,9 @@ public:
 
 		/// otherwise add this component to
 		/// the corresponding manager and return it
-		gameManagers[CTtoMT[((Component*)retComp)->cType]]->SubscribeComponent(retComp);
+		Manager* reqManager = gameManagers[CTtoMT[((Component*)retComp)->cType].first];
+		reqManager->SubscribeComponent(retComp);
+		dynamic_cast<EventManager*>(gameManagers[MANAGER_TYPE::TYPE_EVENT_MANAGER])->Subscribe(retComp, CTtoMT[((Component*)retComp)->cType].second);
 		return retComp;
 	};
 
@@ -51,14 +55,14 @@ public:
 
 
 	/// Used for demo of audio and model components
-	/// size is used in case we have more than 2 objects
+	/// size is used for different cases
 	/// (for future demos)
 	void Demo(size_t size);
 public:
 private:
 private:
-	/// save comp type to manager type
-	std::map<COMPONENT_TYPE, MANAGER_TYPE> CTtoMT;
+	/// save comp type to manager type and to event type
+	std::map<COMPONENT_TYPE, std::pair<MANAGER_TYPE, EVENT_TYPE>> CTtoMT;
 
 	/// saves all of the game objects
 	std::vector<GameObject*> gameObjects;

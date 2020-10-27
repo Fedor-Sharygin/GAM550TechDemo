@@ -8,7 +8,8 @@
 #include "GraphicsManager.h"
 #include "InputManager.h"
 #include "AudioManager.h"
-
+#include "PhysicsManager.h"
+#include "EventManager.h"
 
 
 #endif

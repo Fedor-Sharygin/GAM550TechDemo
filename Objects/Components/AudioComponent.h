@@ -22,7 +22,10 @@ public:
 	virtual void Initialize() override;
 	virtual void End() override;
 
-	void SetSound(std::string nName);
+	/// Create an event to change the volume(?)
+	virtual void HandleEvent(Event* nEvent) override {};
+
+	void SetSound(std::string nName, FMOD_MODE soundLoadMode = FMOD_DEFAULT);
 	FMOD::Sound* GetSound() const;
 
 	void SetChannelName(std::string nCName);
