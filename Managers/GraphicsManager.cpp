@@ -85,6 +85,8 @@ void GraphicsManager::Initialize()
 
 void GraphicsManager::End()
 {
+	comps.clear();
+
 	glfwTerminate();
 	delete baseWindow;
 	delete baseShader;

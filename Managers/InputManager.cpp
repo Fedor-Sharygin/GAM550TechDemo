@@ -50,6 +50,7 @@ void InputManager::Initialize()
 void InputManager::End()
 {
 	windowPtr = nullptr;
+	comps.clear();
 }
 
 

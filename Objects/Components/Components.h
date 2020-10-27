@@ -8,6 +8,7 @@
 #include "ModelComponent.h"
 #include "Transform.h"
 #include "ControlComponent.h"
+#include "Body.h"
 
 #endif
 

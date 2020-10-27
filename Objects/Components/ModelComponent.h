@@ -23,6 +23,8 @@ public:
 	virtual void Initialize() override;
 	virtual void End() override;
 
+	virtual void HandleEvent(Event* nEvent) override {};
+
 	void Draw();
 
 	void SetModel(std::string nName);

@@ -19,6 +19,8 @@ public:
 	virtual void Initialize() override;
 	virtual void End() override;
 
+	virtual void HandleEvent(Event* nEvent) override {};
+
 
 	glm::vec3 GetPosition() const;
 	void SetPosition(glm::vec3 nPos);

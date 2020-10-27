@@ -48,9 +48,9 @@ void AudioComponent::End()
 }
 
 
-void AudioComponent::SetSound(std::string nName)
+void AudioComponent::SetSound(std::string nName, FMOD_MODE soundLoadMode)
 {
-	mSound = loader->LoadSound(nName, mediaPlayer->GetSystem());
+	mSound = loader->LoadSound(nName, mediaPlayer->GetSystem(), soundLoadMode);
 	if (nullptr == mSound)
 	{
 		std::cerr << "Error! Failed to load sound" << std::endl;

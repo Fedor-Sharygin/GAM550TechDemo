@@ -13,6 +13,7 @@
 #include <utility>
 #include <typeinfo>
 #include <typeindex>
+#include <algorithm>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

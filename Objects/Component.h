@@ -20,6 +20,7 @@ enum class COMPONENT_TYPE
 
 
 class GameObject;
+class Event;
 
 class Component
 {
@@ -33,6 +34,8 @@ public:
 
 	virtual void Initialize() = 0;
 	virtual void End() = 0;
+
+	virtual void HandleEvent(Event* nEvent) = 0;
 
 	void SetOwner(GameObject* nOwner);
 	GameObject* GetOwner() const;

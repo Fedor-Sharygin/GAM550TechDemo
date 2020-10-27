@@ -9,9 +9,9 @@
 GameManager::GameManager()
 {
 	CTtoMT = {
-		{COMPONENT_TYPE::TYPE_AUDIO,	MANAGER_TYPE::TYPE_AUDIO_MANAGER},
-		{COMPONENT_TYPE::TYPE_BODY,		MANAGER_TYPE::TYPE_PHYSICS_MANAGER},
-		{COMPONENT_TYPE::TYPE_MODEL,	MANAGER_TYPE::TYPE_GRAPHICS_MANAGER}
+		{ COMPONENT_TYPE::TYPE_AUDIO,	std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_BODY,	std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
+		{ COMPONENT_TYPE::TYPE_MODEL,	std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) }
 	};
 
 	GraphicsManager* mGrManager = new GraphicsManager();
@@ -27,12 +27,16 @@ GameManager::GameManager()
 	mInputManager->Initialize();
 
 	AudioManager* mAudioManager = new AudioManager();
+	EventManager* mEventManager = new EventManager();
+	PhysicsManager* mPhysicsManager = new PhysicsManager();
 
 	gameManagers[mFRManager->mType] = mFRManager;
 	gameManagers[mInputManager->mType] = mInputManager;
+	gameManagers[mEventManager->mType] = mEventManager;
 	gameManagers[mGrManager->mType] = mGrManager;
 	gameManagers[mAssetManager->mType] = mAssetManager;
 	gameManagers[mAudioManager->mType] = mAudioManager;
+	gameManagers[mPhysicsManager->mType] = mPhysicsManager;
 	////// Test the push thing ///////
 }
 
@@ -42,13 +46,12 @@ GameManager::~GameManager()
 	{
 		delete man;
 	}
-
 	gameManagers.clear();
 }
 
 
 /// Consider that we only FrSt and FrE
-/// with FrameRateManager
+/// with FrameRateManager and GraphicsManager
 /// 
 /// no need to update FrameRateManager
 
@@ -131,7 +134,7 @@ void GameManager::Demo(size_t size)
 		AudioComponent* sAudComp = this->AddComponentTo<AudioComponent>(gameObjects[1]);
 		sAudComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 		sAudComp->PassMediaPlayer(static_cast<AudioManager*>(gameManagers[MANAGER_TYPE::TYPE_AUDIO_MANAGER]));
-		sAudComp->SetSound("sample.wav");
+		sAudComp->SetSound("sample.wav", FMOD_LOOP_NORMAL);
 		sAudComp->SetChannelName("sampleMusic");
 
 		/// 3rd object (2nd)
