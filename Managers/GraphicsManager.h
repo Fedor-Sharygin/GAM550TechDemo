@@ -3,10 +3,11 @@
 #ifndef _GRAPHICS_H_
 #define _GRAPHICS_H_
 
-#include "..//Graphics//Shader.h"
-#include "..//Graphics//Camera.h"
 #include "Manager.h"
 
+class Shader;
+class Camera;
+class Skybox;
 
 class GraphicsManager : public Manager
 {
@@ -29,6 +30,10 @@ public:
 	GLFWwindow* baseWindow;
 	Shader* baseShader;
 	Camera* baseCamera;
+
+	/// shader that is used to render the skybox
+	Shader* sbShader;
+	Skybox* skybox;
 private:
 private:
 	float scrWidth;

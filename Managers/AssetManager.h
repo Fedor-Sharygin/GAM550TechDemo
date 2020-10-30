@@ -22,6 +22,7 @@ public:
 	virtual void End() override;
 
 	unsigned int& LoadTexture(std::string name);
+	unsigned int& LoadSkyboxTextures(std::string name, std::vector<std::string> faces);
 	Model* LoadModel(std::string name);
 	FMOD::Sound* LoadSound(std::string name, FMOD::System* mAManSystem, FMOD_MODE soundLoadMode = FMOD_DEFAULT);
 public:
@@ -33,6 +34,7 @@ private:
 	/// Loaded textures
 	std::string textureDirectory;
 	std::unordered_map<std::string, unsigned int> textures;
+	std::unordered_map<std::string, unsigned int> sbTextures;	/// used only for loading sb textures
 
 	/// Loaded models
 	std::string modelDirectory;
