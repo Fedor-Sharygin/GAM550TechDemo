@@ -105,6 +105,9 @@
     <ClCompile Include="Managers\Events\ContactEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -200,6 +203,9 @@
     <ClInclude Include="Managers\Events\ContactEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Graphics\Shaders\mshader.fs" />
@@ -210,5 +216,7 @@
     <None Include="Graphics\Shaders\debugShader.vert" />
     <None Include="Graphics\Shaders\triangleShader.frag" />
     <None Include="Graphics\Shaders\triangleShader.vert" />
+    <None Include="Graphics\Shaders\skyboxShader.fs" />
+    <None Include="Graphics\Shaders\skyboxShader.vs" />
   </ItemGroup>
 </Project>

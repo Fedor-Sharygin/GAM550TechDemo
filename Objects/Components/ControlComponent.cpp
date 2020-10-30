@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "ControlComponent.h"
 
+#include "..//..//Graphics//Camera.h"
 #include "..//..//Managers//Managers.h"
 
 

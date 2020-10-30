@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "GameManager.h"
 
+#include ".//Graphics//Skybox.h"
 #include ".//Managers//Managers.h"
 #include ".//Objects//Components//Components.h"
 
@@ -19,6 +20,8 @@ GameManager::GameManager()
 
 	AssetManager* mAssetManager = new AssetManager();
 	mAssetManager->Initialize();
+	mGrManager->skybox->PassLoader(mAssetManager);
+	mGrManager->skybox->LoadFaces();
 
 	FrameRateManager* mFRManager = new FrameRateManager();
 	mFRManager->Initialize();
@@ -120,7 +123,8 @@ void GameManager::Demo(size_t size)
 		/// 1st object (0th)
 		/// test the model loading and draw
 		ModelComponent* fModComp = this->AddComponentTo<ModelComponent>(gameObjects[0]);
-		Transform* fTrans = AddComponentTo<Transform>(gameObjects[0]);
+		Transform* fTrans = this->AddComponentTo<Transform>(gameObjects[0]);
+		//Body* fBody = AddComponentTo<Body>(gameObjects[0]);
 
 		fModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 		fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
@@ -128,6 +132,8 @@ void GameManager::Demo(size_t size)
 
 		fTrans->SetPosition(glm::vec3(0.0f, 0.0f, -20.0f));
 		fTrans->SetScale(glm::vec3((1.0f / 2.0f)));
+
+		//fBody->SetMass(1.0f);
 
 		/// 2nd object (1st)
 		/// test the audio loading and play

@@ -151,6 +151,7 @@
     <ClCompile Include="Graphics\Mesh.cpp" />
     <ClCompile Include="Graphics\Model.cpp" />
     <ClCompile Include="Graphics\Shader.cpp" />
+    <ClCompile Include="Graphics\Skybox.cpp" />
     <ClCompile Include="includes\gladContainer\src\glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -189,6 +190,7 @@
     <ClInclude Include="Graphics\Mesh.h" />
     <ClInclude Include="Graphics\Model.h" />
     <ClInclude Include="Graphics\Shader.h" />
+    <ClInclude Include="Graphics\Skybox.h" />
     <ClInclude Include="Managers\AssetManager.h" />
     <ClInclude Include="Managers\AudioManager.h" />
     <ClInclude Include="Managers\CollisionManager.h" />
@@ -222,6 +224,8 @@
     <None Include="Graphics\Shaders\debugShader.vert" />
     <None Include="Graphics\Shaders\mshader.fs" />
     <None Include="Graphics\Shaders\mshader.vs" />
+    <None Include="Graphics\Shaders\skyboxShader.fs" />
+    <None Include="Graphics\Shaders\skyboxShader.vs" />
     <None Include="Graphics\Shaders\textureShader.fs" />
     <None Include="Graphics\Shaders\textureShader.vs" />
     <None Include="Graphics\Shaders\triangleShader.frag" />
