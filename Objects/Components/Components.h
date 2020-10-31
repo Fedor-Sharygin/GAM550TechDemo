@@ -9,6 +9,7 @@
 #include "Transform.h"
 #include "ControlComponent.h"
 #include "Body.h"
+#include "ParticleEmitter.h"
 
 #endif
 

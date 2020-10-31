@@ -23,11 +23,11 @@ void GraphicsManager::Update(float dt)
 	baseShader->Use();
 	// pass projection matrix to shader (note that in this case it could change every frame)
 	glm::mat4 projection = glm::perspective(glm::radians(baseCamera->Zoom), (float)scrWidth / (float)scrHeight, 0.1f, 100.0f);
-	baseShader->setMat4("projection", projection);
+	baseShader->SetMat4("projection", projection);
 	
 	// mGrManager->baseCamera/view transformation
 	glm::mat4 view = baseCamera->GetViewMatrix();
-	baseShader->setMat4("view", view);
+	baseShader->SetMat4("view", view);
 
 	/// used for reflections: not this demo
 	//baseShader->setVec3("cameraPos", baseCamera->Position);
@@ -43,8 +43,8 @@ void GraphicsManager::Update(float dt)
 	sbShader->Use();
 	/// get rid of camera's translation
 	view = glm::mat4(glm::mat3(view));
-	sbShader->setMat4("projection", projection);
-	sbShader->setMat4("view", view);
+	sbShader->SetMat4("projection", projection);
+	sbShader->SetMat4("view", view);
 	skybox->Draw();
 	glDepthFunc(GL_LESS);
 }
@@ -116,6 +116,8 @@ void GraphicsManager::Initialize()
 	skybox = new Skybox(faces);
 	skybox->PassDrawer(this);
 	sbShader = new Shader("Graphics/Shaders/skyboxShader.vs", "Graphics/Shaders/skyboxShader.fs");
+
+	prtShader = new Shader("Graphics/Shaders/particleShader.vs", "Graphics/Shaders/particleShader.fs");
 }
 
 

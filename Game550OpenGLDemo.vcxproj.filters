@@ -108,6 +108,15 @@
     <ClCompile Include="Graphics\Skybox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Components\ParticleEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\ParticlesManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -206,6 +215,15 @@
     <ClInclude Include="Graphics\Skybox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Particle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Components\ParticleEmitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\ParticlesManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Graphics\Shaders\mshader.fs" />
@@ -218,5 +236,7 @@
     <None Include="Graphics\Shaders\triangleShader.vert" />
     <None Include="Graphics\Shaders\skyboxShader.fs" />
     <None Include="Graphics\Shaders\skyboxShader.vs" />
+    <None Include="Graphics\Shaders\particleShader.fs" />
+    <None Include="Graphics\Shaders\particleShader.vs" />
   </ItemGroup>
 </Project>

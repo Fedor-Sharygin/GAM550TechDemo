@@ -150,6 +150,7 @@
     <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\Mesh.cpp" />
     <ClCompile Include="Graphics\Model.cpp" />
+    <ClCompile Include="Graphics\Particle.cpp" />
     <ClCompile Include="Graphics\Shader.cpp" />
     <ClCompile Include="Graphics\Skybox.cpp" />
     <ClCompile Include="includes\gladContainer\src\glad.c">
@@ -170,6 +171,7 @@
     <ClCompile Include="Managers\GraphicsManager.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\Manager.cpp" />
+    <ClCompile Include="Managers\ParticlesManager.cpp" />
     <ClCompile Include="Managers\PhysicsManager.cpp" />
     <ClCompile Include="Objects\Component.cpp" />
     <ClCompile Include="Objects\Components\AudioComponent.cpp" />
@@ -177,6 +179,7 @@
     <ClCompile Include="Objects\Components\ControlComponent.cpp" />
     <ClCompile Include="Objects\Components\ModelComponent.cpp" />
     <ClCompile Include="Objects\Components\OBB.cpp" />
+    <ClCompile Include="Objects\Components\ParticleEmitter.cpp" />
     <ClCompile Include="Objects\Components\Shape.cpp" />
     <ClCompile Include="Objects\Components\Sphere.cpp" />
     <ClCompile Include="Objects\Components\Transform.cpp" />
@@ -189,6 +192,7 @@
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\Mesh.h" />
     <ClInclude Include="Graphics\Model.h" />
+    <ClInclude Include="Graphics\Particle.h" />
     <ClInclude Include="Graphics\Shader.h" />
     <ClInclude Include="Graphics\Skybox.h" />
     <ClInclude Include="Managers\AssetManager.h" />
@@ -204,6 +208,7 @@
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\Manager.h" />
     <ClInclude Include="Managers\Managers.h" />
+    <ClInclude Include="Managers\ParticlesManager.h" />
     <ClInclude Include="Managers\PhysicsManager.h" />
     <ClInclude Include="Objects\Component.h" />
     <ClInclude Include="Objects\Components\AudioComponent.h" />
@@ -212,6 +217,7 @@
     <ClInclude Include="Objects\Components\ControlComponent.h" />
     <ClInclude Include="Objects\Components\ModelComponent.h" />
     <ClInclude Include="Objects\Components\OBB.h" />
+    <ClInclude Include="Objects\Components\ParticleEmitter.h" />
     <ClInclude Include="Objects\Components\Shape.h" />
     <ClInclude Include="Objects\Components\Shapes.h" />
     <ClInclude Include="Objects\Components\Sphere.h" />
@@ -224,6 +230,8 @@
     <None Include="Graphics\Shaders\debugShader.vert" />
     <None Include="Graphics\Shaders\mshader.fs" />
     <None Include="Graphics\Shaders\mshader.vs" />
+    <None Include="Graphics\Shaders\particleShader.fs" />
+    <None Include="Graphics\Shaders\particleShader.vs" />
     <None Include="Graphics\Shaders\skyboxShader.fs" />
     <None Include="Graphics\Shaders\skyboxShader.vs" />
     <None Include="Graphics\Shaders\textureShader.fs" />

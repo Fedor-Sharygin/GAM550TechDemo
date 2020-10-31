@@ -10,13 +10,16 @@
 GameManager::GameManager()
 {
 	CTtoMT = {
-		{ COMPONENT_TYPE::TYPE_AUDIO,	std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
-		{ COMPONENT_TYPE::TYPE_BODY,	std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
-		{ COMPONENT_TYPE::TYPE_MODEL,	std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) }
+		{ COMPONENT_TYPE::TYPE_AUDIO,				std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_BODY,				std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
+		{ COMPONENT_TYPE::TYPE_MODEL,				std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_PARTICLE_EMITTER,	std::make_pair(MANAGER_TYPE::TYPE_PARTICLES_MANAGER, EVENT_TYPE::TYPE_CONTACT) }
 	};
 
 	GraphicsManager* mGrManager = new GraphicsManager();
 	mGrManager->Initialize();
+
+	ParticlesManager* mParticlesManager = new ParticlesManager();
 
 	AssetManager* mAssetManager = new AssetManager();
 	mAssetManager->Initialize();
@@ -40,6 +43,7 @@ GameManager::GameManager()
 	gameManagers[mAssetManager->mType] = mAssetManager;
 	gameManagers[mAudioManager->mType] = mAudioManager;
 	gameManagers[mPhysicsManager->mType] = mPhysicsManager;
+	gameManagers[mParticlesManager->mType] = mParticlesManager;
 	////// Test the push thing ///////
 }
 
@@ -125,6 +129,7 @@ void GameManager::Demo(size_t size)
 		ModelComponent* fModComp = this->AddComponentTo<ModelComponent>(gameObjects[0]);
 		Transform* fTrans = this->AddComponentTo<Transform>(gameObjects[0]);
 		//Body* fBody = AddComponentTo<Body>(gameObjects[0]);
+		ParticleEmitter* fPrt = this->AddComponentTo<ParticleEmitter>(gameObjects[0]);
 
 		fModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 		fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
@@ -134,6 +139,12 @@ void GameManager::Demo(size_t size)
 		fTrans->SetScale(glm::vec3((1.0f / 2.0f)));
 
 		//fBody->SetMass(1.0f);
+
+		fPrt->SetAmount(100);
+		fPrt->Initialize();
+		fPrt->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		fPrt->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		fPrt->LoadTexture("smokeParticle.png");
 
 		/// 2nd object (1st)
 		/// test the audio loading and play

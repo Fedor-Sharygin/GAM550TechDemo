@@ -34,6 +34,9 @@ public:
 	/// shader that is used to render the skybox
 	Shader* sbShader;
 	Skybox* skybox;
+
+	/// shader for drawing particles
+	Shader* prtShader;
 private:
 private:
 	float scrWidth;
