@@ -1,6 +1,4 @@
-﻿  GraphicsManager.cpp
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(79,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(79,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(127,19): warning C4150: deletion of pointer to incomplete type 'GLFWwindow'; no destructor called
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\includes\GLFW\glfw3.h(1157): message : see declaration of 'GLFWwindow'
+﻿  GameManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
   Game550OpenGLDemo.vcxproj -> C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Debug\Game550OpenGLDemo.exe

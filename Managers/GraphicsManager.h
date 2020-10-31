@@ -34,6 +34,12 @@ public:
 	/// shader that is used to render the skybox
 	Shader* sbShader;
 	Skybox* skybox;
+
+	/// shadow mapping shader
+	Shader* shadowShader;
+	unsigned int shadowFBO, depthMap;
+	unsigned int shadowMapWidth, shadowMapHeight;
+	glm::vec3 lightPosition;
 private:
 private:
 	float scrWidth;

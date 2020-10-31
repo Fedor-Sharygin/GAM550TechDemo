@@ -218,5 +218,9 @@
     <None Include="Graphics\Shaders\triangleShader.vert" />
     <None Include="Graphics\Shaders\skyboxShader.fs" />
     <None Include="Graphics\Shaders\skyboxShader.vs" />
+    <None Include="Graphics\Shaders\shadowMapShader.fs" />
+    <None Include="Graphics\Shaders\shadowMapShader.vs" />
+    <None Include="Graphics\Shaders\shadowDepthShader.vs" />
+    <None Include="Graphics\Shaders\shadowDepthShader.fs" />
   </ItemGroup>
 </Project>
