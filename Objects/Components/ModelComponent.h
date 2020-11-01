@@ -9,6 +9,7 @@
 class Model;
 class AssetManager;
 class GraphicsManager;
+class Shader;
 
 class ModelComponent : public Component
 {
@@ -25,7 +26,7 @@ public:
 
 	virtual void HandleEvent(Event* nEvent) override {};
 
-	void Draw();
+	void Draw(Shader* pShader);
 
 	void SetModel(std::string nName);
 	Model* GetModel() const;

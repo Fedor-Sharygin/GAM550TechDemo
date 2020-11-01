@@ -35,11 +35,11 @@ void ModelComponent::End()
 {}
 
 
-void ModelComponent::Draw()
+void ModelComponent::Draw(Shader* pShader)
 {
 	Transform* goTr = static_cast<Transform*>(owner->GetComponent<Transform>());
 
-	Shader* mShader = drawer->baseShader;
+//	Shader* mShader = drawer->baseShader;
 
 	/// set the base matrix
 	glm::mat4 model = glm::mat4(1.0f);
@@ -61,10 +61,10 @@ void ModelComponent::Draw()
 	glm::vec3 scale = goTr->GetScale();
 	model = glm::scale(model, scale);
 
-	int loc = glGetUniformLocation(mShader->ID, "model");
+	int loc = glGetUniformLocation(pShader->ID, "model");
 	glUniformMatrix4fv(loc, 1, GL_FALSE, value_ptr(model));
 
-	mModel->Draw(mShader);
+	mModel->Draw(pShader);
 }
 
 

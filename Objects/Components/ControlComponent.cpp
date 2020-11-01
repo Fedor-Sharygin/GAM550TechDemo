@@ -55,8 +55,15 @@ void ControlComponent::Update(float dt)
         controlee->baseCamera->ProcessKeyboard(CAMERA_MOVEMENT::RIGHT, dt);
     }
 
-    controlee->baseCamera->ProcessMouseMovement(inpStream->xMouse - inpStream->prevXMouse, inpStream->prevYMouse - inpStream->yMouse);
-    controlee->baseCamera->ProcessMouseScroll(inpStream->scrollDifference);
+    if (false == inpStream->MouseButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+    {
+        controlee->baseCamera->ProcessMouseMovement(inpStream->xMouse - inpStream->prevXMouse, inpStream->prevYMouse - inpStream->yMouse);
+        controlee->baseCamera->ProcessMouseScroll(inpStream->scrollDifference);
+    }
+    else
+    {
+        //controlee->lightPosition
+    }
 }
 
 

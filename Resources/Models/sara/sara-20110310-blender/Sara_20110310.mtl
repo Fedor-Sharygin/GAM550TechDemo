@@ -1,0 +1,183 @@
+# Blender MTL File: 'Sara_20110310.blend'
+# Material Count: 18
+
+newmtl BikiniM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.309102 0.463837 0.720000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd stripes.png
+
+newmtl BikiniM_blonde.png.004
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.309102 0.463837 0.720000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Documents and Settings\Lauris\My Documents\Documents\3D\Models\Chibi\blonde.png
+
+newmtl BlackStockingM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.029928 0.029928 0.029928
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd black.png
+
+newmtl BodyM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.720000 0.492846 0.341804
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd body.png
+
+newmtl EyeM
+Ns 390.196078
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 1.000000 1.000000 1.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd eye.png
+map_d eye.png
+
+newmtl EyelashesM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.382659 0.382621 0.382621
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd eyelashes.png
+map_d eyelashes.png
+
+newmtl FaceM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.720000 0.492846 0.341804
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd face.png
+
+newmtl HairM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 0.738040 0.168402
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Kd hair-gold.png
+map_d hair-gold.png
+
+newmtl HairM_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 0.738040 0.168402
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_d hair-gold.png
+map_Kd hair-gold.png
+
+newmtl RibbonM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.695110 0.055125 0.046274
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl ShirtBorderM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.006461 0.004200 0.004868
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Documents and Settings\Lauris\My Documents\Documents\3D\Models\Chibi\blonde.png
+
+newmtl ShirtBorderM_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.006461 0.004200 0.004868
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+
+newmtl ShirtM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.028175 0.023163 0.024248
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd black-sweater.png
+
+newmtl ShirtM_blonde.png.004
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.028175 0.023163 0.024248
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Documents and Settings\Lauris\My Documents\Documents\3D\Models\Chibi\blonde.png
+
+newmtl ShoeM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.207839 0.012316 0.017294
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Documents and Settings\Lauris\My Documents\Documents\3D\Models\Chibi\blonde.png
+
+newmtl ShoeM_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.207839 0.012316 0.017294
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl SkirtM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.366026 0.000000 0.015187
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd tartan.png
+
+newmtl SocksM
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.012796 0.010520 0.011013
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd black-sweater.png

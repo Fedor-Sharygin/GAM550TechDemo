@@ -118,7 +118,7 @@ void GameManager::Demo(size_t size)
 		this->CreateGameObject();
 	}
 
-	if (3 == size)
+	if (4 == size)
 	{
 		/// 1st object (0th)
 		/// test the model loading and draw
@@ -128,7 +128,7 @@ void GameManager::Demo(size_t size)
 
 		fModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 		fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
-		fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
+		fModComp->SetModel("sara/sara-20110310-blender/Sara_20110310.obj");		/// find a model online and pass the name
 
 		fTrans->SetPosition(glm::vec3(0.0f, 0.0f, -20.0f));
 		fTrans->SetScale(glm::vec3((1.0f / 2.0f)));
@@ -148,6 +148,18 @@ void GameManager::Demo(size_t size)
 		ControlComponent* tContr = this->AddComponentTo<ControlComponent>(gameObjects[2]);
 		tContr->PassControlee(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
 		tContr->PassInputStream(static_cast<InputManager*>(gameManagers[MANAGER_TYPE::TYPE_INPUT_MANAGER]));
+
+		/// 4th object (3rd)
+		/// make a giant bullet ground
+		ModelComponent* thModComp = this->AddComponentTo<ModelComponent>(gameObjects[3]);
+		Transform* thTrans = this->AddComponentTo<Transform>(gameObjects[3]);
+
+		thModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		thModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		thModComp->SetModel("bullet/bullet/lowpolybullet.obj");		/// find a model online and pass the name
+
+		thTrans->SetPosition(glm::vec3(0.0f, -20.0f, -100.0f));
+		thTrans->SetScale(glm::vec3((20.0f, 1.0f / 5.0f, 20.0f)));
 	}
 }
 
