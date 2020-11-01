@@ -164,8 +164,8 @@ void GraphicsManager::Initialize()
 	baseShader->SetInt("diffuseTexture", 0);
 	baseShader->SetInt("shadowMap", 1);
 
-	shadowShader->Use();
-	shadowShader->SetInt("depthMap", 0);
+	//shadowShader->Use();
+	//shadowShader->SetInt("depthMap", 0);
 }
 
 
