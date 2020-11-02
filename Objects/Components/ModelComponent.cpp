@@ -49,8 +49,8 @@ void ModelComponent::Draw(Shader* pShader)
 	model = glm::translate(model, position);
 
 	/// rotate it
-	/// x - yaw
-	/// y - pitch
+	/// x - pitch
+	/// y - yaw
 	/// z - roll
 	glm::vec3 rotation = goTr->GetRotation();
 	model = glm::rotate(model, glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));

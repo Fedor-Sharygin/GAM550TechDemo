@@ -31,9 +31,14 @@ public:
 	glm::vec3 GetRotation() const;
 	void SetRotation(glm::vec3 nRot);
 
+	glm::mat4 GetRotationMatrix();
+	glm::vec3 GetUp();
+	glm::vec3 GetForward();
+	glm::vec3 GetRight();
+
 	static glm::vec3 GlobalUp()			{ return glm::vec3(0.0f, 1.0f, 0.0f); };
-	static glm::vec3 GlobalRight()		{ return glm::vec3(-1.0f, 0.0f, 0.0f); };
-	static glm::vec3 GlobalForward()	{ return glm::vec3(0.0f, 0.0f, -1.0f); };
+	static glm::vec3 GlobalRight()		{ return glm::vec3(1.0f, 0.0f, 0.0f); };
+	static glm::vec3 GlobalForward()	{ return glm::vec3(0.0f, 0.0f, 1.0f); };
 public:
 private:
 private:
