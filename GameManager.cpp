@@ -171,7 +171,7 @@ void GameManager::Demo(size_t size)
 		thTrans->SetScale(glm::vec3((20.0f, 1.0f / 5.0f, 20.0f)));
 	}
 
-	if (25 == size)
+	if (26 == size)
 	{
 		for (int i = 0; i < 24; ++i)
 		{
@@ -195,6 +195,10 @@ void GameManager::Demo(size_t size)
 		sAudComp->PassMediaPlayer(static_cast<AudioManager*>(gameManagers[MANAGER_TYPE::TYPE_AUDIO_MANAGER]));
 		sAudComp->SetSound("sample.wav", FMOD_LOOP_NORMAL);
 		sAudComp->SetChannelName("sampleMusic");
+
+		ControlComponent* tContr = this->AddComponentTo<ControlComponent>(gameObjects[25]);
+		tContr->PassControlee(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		tContr->PassInputStream(static_cast<InputManager*>(gameManagers[MANAGER_TYPE::TYPE_INPUT_MANAGER]));
 	}
 }
 
