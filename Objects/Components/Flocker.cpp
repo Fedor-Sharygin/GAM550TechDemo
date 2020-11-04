@@ -45,7 +45,7 @@ void Flocker::Update(float dt)
 
 	mTrans->SetPosition(pos + delta);
 
-	rotation.y = std::atan2(delta.x, delta.z);
+	rotation.y = glm::degrees(std::atan2(delta.x, delta.z));
 	mTrans->SetRotation(rotation);
 }
 
