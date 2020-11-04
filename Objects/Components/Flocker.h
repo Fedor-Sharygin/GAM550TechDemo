@@ -16,11 +16,15 @@ class Evade;
 /// time implementing evasion
 class SphereMover;
 
+/// We need the access to other
+/// Flocker components to see their
+/// positions and allign, cohide(?), separate, evade
+class FlockingManager;
 
 class Flocker : public Component
 {
 public:
-	Flocker();
+	Flocker(float bodyRadius, float wanderAlpha, float sepRadius, float allRadius, float cohRadius, float evadeDistance, float velocity);
 	virtual ~Flocker();
 
 	virtual void Update(float dt) override;
@@ -31,9 +35,25 @@ public:
 	virtual void End() override;
 
 	virtual void HandleEvent(Event* nEvent) override;
+
+	void PassOwner(FlockingManager* nFlMan);
+	std::vector<Component*>& GetAllFlockers();
+
+	SphereMover* GetBody() { return sphereMover; };
 public:
 private:
 private:
+	FlockingManager* flMan;
+	
+	float bRad, wAl, sepRad, allRad, cohRad, evDist;
+	float mVelocity;
+
+	Wander* wander;
+	Separation* separation;
+	Allignment* allignment;
+	Cohesion* cohesion;
+	Evade* evade;
+	SphereMover* sphereMover;
 };
 
 

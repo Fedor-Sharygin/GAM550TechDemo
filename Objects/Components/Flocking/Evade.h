@@ -7,18 +7,23 @@
 /// Evade other bodies in front
 /// of me at max distance dist
 
+class Flocker;
+
 class Evade
 {
 public:
-	Evade() : dist(0.0f) {};
+	Evade() : sqDist(0.0f) {};
 
-	void SetEvadeDistance(float nDist) { dist = nDist; };
+	void SetEvadeSquareDistance(float nDist) { sqDist = nDist; };
+	void PassOwner(Flocker* nFlock) { mOwner = nFlock; };
 
 	glm::vec3 GetForwVectAddition();
 public:
 private:
 private:
-	float dist;
+	float sqDist;
+
+	Flocker* mOwner;
 };
 
 

@@ -4,7 +4,7 @@
 #define _WANDER_H_
 
 
-class Transform;
+class Flocker;
 
 /// Why make it harder? U - stoopid, Ted
 /// just make 2d flocking/wander behavior
@@ -13,10 +13,10 @@ class Transform;
 class Wander
 {
 public:
-	Wander() : alphaRange(0.0f), curAngle(0.0f), generator() {};
+	Wander() : alphaRange(0.0f), curAngle(0.0f), generator(), mOwner(nullptr) {};
 
 	void SetHorRange(float nAR) { alphaRange = nAR; };
-	void SetTransform(Transform* nTrans) { mTrans = nTrans; };
+	void PassOwner(Flocker* nFlock) { mOwner = nFlock; };
 
 	glm::vec3 GetForwVectAddition();
 public:
@@ -27,7 +27,7 @@ private:
 	float alphaRange;
 	float curAngle;
 
-	Transform* mTrans;
+	Flocker* mOwner;
 };
 
 

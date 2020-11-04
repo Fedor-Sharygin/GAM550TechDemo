@@ -25,26 +25,36 @@ void Transform::Initialize()
 void Transform::End()
 {}
 
-glm::mat4 Transform::GetRotationMatrix()
-{
-	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::rotate(model, glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-	model = glm::rotate(model, glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::rotate(model, glm::radians(rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-	return model;
-}
 
 glm::vec3 Transform::GetUp()
 {
-	glm::mat4 rot = GetRotationMatrix();
-	
+	glm::vec3 front = GetForward();
+	glm::vec3 right = GetRight();
+	glm::vec3 up = glm::normalize(glm::cross(front, right));
+	return up;
 }
 
 glm::vec3 Transform::GetForward()
-{}
+{
+	glm::vec3 front;
+	float pitch = rotation.x;
+	float yaw = rotation.y;
+	float roll = rotation.z;
+	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front.y = sin(glm::radians(pitch));
+	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front = glm::normalize(front);
+	return front;
+}
 
 glm::vec3 Transform::GetRight()
-{}
+{
+	glm::vec3 front = GetForward();
+	glm::vec3 worldUp = GlobalUp();
+
+	glm::vec3 right = glm::normalize(glm::cross(front, worldUp));
+	return right;
+}
 
 
 

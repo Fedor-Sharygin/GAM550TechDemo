@@ -4,18 +4,23 @@
 #define _SEPARATION_H_
 
 
+class Flocker;
+
 class Separation
 {
 public:
-	Separation() : sepRadius(0.0f) {};
+	Separation() : sqSepRadius(0.0f) {};
 
-	void SetRadius(float nRad) { sepRadius = nRad; };
+	void SetSquareRadius(float nRad) { sqSepRadius = nRad; };
+	void PassOwner(Flocker* nFlock) { mOwner = nFlock; };
 
 	glm::vec3 GetForwVectAddition();
 public:
 private:
 private:
-	float sepRadius;
+	float sqSepRadius;
+
+	Flocker* mOwner;
 };
 
 

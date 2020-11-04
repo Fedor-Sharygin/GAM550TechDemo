@@ -31,7 +31,6 @@ public:
 	glm::vec3 GetRotation() const;
 	void SetRotation(glm::vec3 nRot);
 
-	glm::mat4 GetRotationMatrix();
 	glm::vec3 GetUp();
 	glm::vec3 GetForward();
 	glm::vec3 GetRight();

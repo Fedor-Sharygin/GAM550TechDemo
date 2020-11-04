@@ -4,18 +4,23 @@
 #define _COHESION_H_
 
 
+class Flocker;
+
 class Cohesion
 {
 public:
-	Cohesion() : cohRadius(0.0f) {};
+	Cohesion() : sqCohRadius(0.0f) {};
 
-	void SetRadius(float nRad) { cohRadius = nRad; };
+	void SetSquareRadius(float nRad) { sqCohRadius = nRad; };
+	void PassOwner(Flocker* nFlock) { mOwner = nFlock; };
 
 	glm::vec3 GetForwVectAddition();
 public:
 private:
 private:
-	float cohRadius;
+	float sqCohRadius;
+
+	Flocker* mOwner;
 };
 
 

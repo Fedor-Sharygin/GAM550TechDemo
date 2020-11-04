@@ -51,6 +51,12 @@ void AudioManager::End()
 	{
 		mSystem->release();
 	}
+
+	for (auto& audioComp : comps)
+	{
+		delete audioComp;
+	}
+	comps.clear();
 }
 
 

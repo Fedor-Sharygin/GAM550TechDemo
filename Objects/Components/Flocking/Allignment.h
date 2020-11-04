@@ -4,18 +4,23 @@
 #define _ALLIGNMENT_H_
 
 
+class Flocker;
+
 class Allignment
 {
 public:
-	Allignment() : allRadius(0.0f) {};
+	Allignment() : sqAllRadius(0.0f) {};
 
-	void SetRadius(float nRad) { allRadius = nRad; };
+	void SetSquareRadius(float nRad) { sqAllRadius = nRad; };
+	void PassOwner(Flocker* nFlock) { mOwner = nFlock; };
 
 	glm::vec3 GetForwVectAddition();
 public:
 private:
 private:
-	float allRadius;
+	float sqAllRadius;
+
+	Flocker* mOwner;
 };
 
 

@@ -7,7 +7,8 @@
 
 GameObject::GameObject()
 	:
-	goComponents(std::unordered_map<std::type_index, Component*>())
+	goComponents(std::unordered_map<std::type_index, Component*>()),
+	generator()
 {}
 
 GameObject::~GameObject()
@@ -21,11 +22,11 @@ GameObject::~GameObject()
 }
 
 
-void GameObject::Update(float dt)
+void GameObject::Update(float dt, std::vector<COMPONENT_TYPE> nonEssential)
 {
 	for (auto& [_, co] : goComponents)
 	{
-		if (COMPONENT_TYPE::TYPE_AUDIO != co->cType)
+		if (nonEssential.end() == std::find(nonEssential.begin(), nonEssential.end(), co->cType))
 		{
 			co->Update(dt);
 		}

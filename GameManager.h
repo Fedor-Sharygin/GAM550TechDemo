@@ -63,6 +63,7 @@ private:
 private:
 	/// save comp type to manager type and to event type
 	std::map<COMPONENT_TYPE, std::pair<MANAGER_TYPE, EVENT_TYPE>> CTtoMT;
+	std::vector<COMPONENT_TYPE> nonEssentailUpdates;
 
 	/// saves all of the game objects
 	std::vector<GameObject*> gameObjects;

@@ -5,19 +5,23 @@
 
 
 class Transform;
+class Flocker;
 
 class SphereMover
 {
 public:
-	SphereMover() : sphRadius(0.0f), mTrans(nullptr) {};
+	SphereMover() : sphSqRadius(0.0f), mOwner(nullptr) {};
 
-	void SetRadius(float nRad) { sphRadius = nRad; };
-	void PassTransform(Transform* nTrans) { mTrans = nTrans; };
+	void SetSquareRadius(float nRad) { sphSqRadius = nRad; };
+	void PassOwner(Flocker* nFlock) { mOwner = nFlock; };
+
+	float GetSquareRadius() const { return sphSqRadius; };
 public:
 private:
 private:
-	float sphRadius;
-	Transform* mTrans;
+	float sphSqRadius;
+
+	Flocker* mOwner;
 };
 
 
