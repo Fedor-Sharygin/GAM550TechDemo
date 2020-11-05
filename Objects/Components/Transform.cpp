@@ -26,6 +26,37 @@ void Transform::End()
 {}
 
 
+glm::vec3 Transform::GetUp()
+{
+	glm::vec3 front = GetForward();
+	glm::vec3 right = GetRight();
+	glm::vec3 up = glm::normalize(glm::cross(front, right));
+	return up;
+}
+
+glm::vec3 Transform::GetForward()
+{
+	glm::vec3 front;
+	float pitch = rotation.x;
+	float yaw = rotation.y;
+	float roll = rotation.z;
+	front.x = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front.y = sin(glm::radians(pitch));
+	front.z = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front = glm::normalize(front);
+	return front;
+}
+
+glm::vec3 Transform::GetRight()
+{
+	glm::vec3 front = GetForward();
+	glm::vec3 worldUp = GlobalUp();
+
+	glm::vec3 right = glm::normalize(glm::cross(front, worldUp));
+	return right;
+}
+
+
 
 
 glm::vec3 Transform::GetPosition() const

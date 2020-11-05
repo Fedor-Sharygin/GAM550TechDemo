@@ -12,7 +12,8 @@
 int main()
 {
     GameManager* fullGameManager = new GameManager();
-    fullGameManager->Demo(4);
+    //fullGameManager->Demo(4);
+    fullGameManager->Demo(26);
 
     GLFWwindow* gameWindow = fullGameManager->GetGameWindow();
     while (0 == glfwWindowShouldClose(gameWindow))

@@ -10,6 +10,7 @@
 #include "AudioManager.h"
 #include "PhysicsManager.h"
 #include "EventManager.h"
+#include "FlockingManager.h"
 
 
 #endif

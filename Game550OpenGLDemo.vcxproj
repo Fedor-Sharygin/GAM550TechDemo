@@ -165,6 +165,7 @@
     <ClCompile Include="Managers\EventManager.cpp" />
     <ClCompile Include="Managers\Events\ContactEvent.cpp" />
     <ClCompile Include="Managers\Events\Event.cpp" />
+    <ClCompile Include="Managers\FlockingManager.cpp" />
     <ClCompile Include="Managers\FrameRateManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Managers\GraphicsManager.cpp" />
@@ -175,7 +176,14 @@
     <ClCompile Include="Objects\Components\AudioComponent.cpp" />
     <ClCompile Include="Objects\Components\Body.cpp" />
     <ClCompile Include="Objects\Components\ControlComponent.cpp" />
+    <ClCompile Include="Objects\Components\Flocking\Allignment.cpp" />
+    <ClCompile Include="Objects\Components\Flocking\Cohesion.cpp" />
+    <ClCompile Include="Objects\Components\Flocking\Evade.cpp" />
+    <ClCompile Include="Objects\Components\Flocking\Separation.cpp" />
+    <ClCompile Include="Objects\Components\Flocking\SphereMover.cpp" />
+    <ClCompile Include="Objects\Components\Flocking\Wander.cpp" />
     <ClCompile Include="Objects\Components\ModelComponent.cpp" />
+    <ClCompile Include="Objects\Components\Flocker.cpp" />
     <ClCompile Include="Objects\Components\OBB.cpp" />
     <ClCompile Include="Objects\Components\Shape.cpp" />
     <ClCompile Include="Objects\Components\Sphere.cpp" />
@@ -198,6 +206,7 @@
     <ClInclude Include="Managers\Events\ContactEvent.h" />
     <ClInclude Include="Managers\Events\Event.h" />
     <ClInclude Include="Managers\Events\Events.h" />
+    <ClInclude Include="Managers\FlockingManager.h" />
     <ClInclude Include="Managers\FrameRateManager.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Managers\GraphicsManager.h" />
@@ -210,7 +219,15 @@
     <ClInclude Include="Objects\Components\Body.h" />
     <ClInclude Include="Objects\Components\Components.h" />
     <ClInclude Include="Objects\Components\ControlComponent.h" />
+    <ClInclude Include="Objects\Components\Flocking\Allignment.h" />
+    <ClInclude Include="Objects\Components\Flocking\Cohesion.h" />
+    <ClInclude Include="Objects\Components\Flocking\Evade.h" />
+    <ClInclude Include="Objects\Components\Flocking\Flock.h" />
+    <ClInclude Include="Objects\Components\Flocking\Separation.h" />
+    <ClInclude Include="Objects\Components\Flocking\SphereMover.h" />
+    <ClInclude Include="Objects\Components\Flocking\Wander.h" />
     <ClInclude Include="Objects\Components\ModelComponent.h" />
+    <ClInclude Include="Objects\Components\Flocker.h" />
     <ClInclude Include="Objects\Components\OBB.h" />
     <ClInclude Include="Objects\Components\Shape.h" />
     <ClInclude Include="Objects\Components\Shapes.h" />

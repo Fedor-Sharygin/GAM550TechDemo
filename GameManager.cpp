@@ -12,7 +12,14 @@ GameManager::GameManager()
 	CTtoMT = {
 		{ COMPONENT_TYPE::TYPE_AUDIO,	std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
 		{ COMPONENT_TYPE::TYPE_BODY,	std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
-		{ COMPONENT_TYPE::TYPE_MODEL,	std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) }
+		{ COMPONENT_TYPE::TYPE_MODEL,	std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_AI,		std::make_pair(MANAGER_TYPE::TYPE_FLOCKING_MANAGER, EVENT_TYPE::TYPE_DEFAULT) }
+	};
+	nonEssentailUpdates = {
+		COMPONENT_TYPE::TYPE_AUDIO,
+		COMPONENT_TYPE::TYPE_BODY,
+		COMPONENT_TYPE::TYPE_MODEL,
+		COMPONENT_TYPE::TYPE_AI
 	};
 
 	GraphicsManager* mGrManager = new GraphicsManager();
@@ -32,6 +39,7 @@ GameManager::GameManager()
 	AudioManager* mAudioManager = new AudioManager();
 	EventManager* mEventManager = new EventManager();
 	PhysicsManager* mPhysicsManager = new PhysicsManager();
+	FlockingManager* mFlockingManager = new FlockingManager();
 
 	gameManagers[mFRManager->mType] = mFRManager;
 	gameManagers[mInputManager->mType] = mInputManager;
@@ -40,6 +48,7 @@ GameManager::GameManager()
 	gameManagers[mAssetManager->mType] = mAssetManager;
 	gameManagers[mAudioManager->mType] = mAudioManager;
 	gameManagers[mPhysicsManager->mType] = mPhysicsManager;
+	gameManagers[mFlockingManager->mType] = mFlockingManager;
 	////// Test the push thing ///////
 }
 
@@ -74,7 +83,7 @@ void GameManager::Update()
 	/// Update the rest of components in GO's
 	for (auto& go : gameObjects)
 	{
-		go->Update(deltaTime);
+		go->Update(deltaTime, nonEssentailUpdates);
 	}
 
 	glfwPollEvents();
@@ -160,6 +169,36 @@ void GameManager::Demo(size_t size)
 
 		thTrans->SetPosition(glm::vec3(0.0f, -20.0f, -100.0f));
 		thTrans->SetScale(glm::vec3((20.0f, 1.0f / 5.0f, 20.0f)));
+	}
+
+	if (26 == size)
+	{
+		for (int i = 0; i < 24; ++i)
+		{
+			GameObject* obj = gameObjects[i];
+			ModelComponent* fModComp = this->AddComponentTo<ModelComponent>(obj);
+			Transform* fTrans = this->AddComponentTo<Transform>(obj);
+			Flocker* fFlock = this->AddComponentTo<Flocker>(obj);
+
+			fModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+			fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+			fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
+
+			fTrans->SetPosition(glm::vec3(float(i % 4) * 10.0f - 15.0f, 0.0f, -20.0f - float(i / 4) * 5.0f));
+			fTrans->SetScale(glm::vec3((1.0f / 10.0f)));
+
+			fFlock->PassOwner(static_cast<FlockingManager*>(gameManagers[MANAGER_TYPE::TYPE_FLOCKING_MANAGER]));
+		}
+
+		AudioComponent* sAudComp = this->AddComponentTo<AudioComponent>(gameObjects[24]);
+		sAudComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		sAudComp->PassMediaPlayer(static_cast<AudioManager*>(gameManagers[MANAGER_TYPE::TYPE_AUDIO_MANAGER]));
+		sAudComp->SetSound("sample.wav", FMOD_LOOP_NORMAL);
+		sAudComp->SetChannelName("sampleMusic");
+
+		ControlComponent* tContr = this->AddComponentTo<ControlComponent>(gameObjects[25]);
+		tContr->PassControlee(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		tContr->PassInputStream(static_cast<InputManager*>(gameManagers[MANAGER_TYPE::TYPE_INPUT_MANAGER]));
 	}
 }
 
