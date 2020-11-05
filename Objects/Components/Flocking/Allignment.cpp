@@ -46,7 +46,7 @@ glm::vec3 Allignment::GetForwVectAddition(float dt)
 
 	collect = collect / closeNum;
 	collect = glm::normalize(collect);
-	glm::vec2 diff = (collect - mFrontV2) / 10.0f * dt;
+	glm::vec2 diff = (collect - mFrontV2) * dt;
 	return glm::vec3(diff.x, 0.0f, diff.y);
 }
 
