@@ -43,7 +43,7 @@ float LineSegmentVSStaticCircle(glm::vec2& stLS, glm::vec2& enLS, glm::vec2& cen
 
 
 
-glm::vec3 Evade::GetForwVectAddition()
+glm::vec3 Evade::GetForwVectAddition(float dt)
 {
 	Transform* mTrans = mOwner->GetOwner()->GetComponent<Transform>();
 	glm::vec3 mFront = mTrans->GetForward();
@@ -89,8 +89,8 @@ glm::vec3 Evade::GetForwVectAddition()
 	}
 
 	minDirection = glm::normalize(minDirection);
-	glm::vec2 evadeVectorV2 = minDirection * minSqRad * 1.3f;
-	glm::vec3 evadeVector = glm::vec3(evadeVectorV2.x, 0.0f, evadeVectorV2.y);
+	glm::vec2 evadeVectorV2 = minDirection * std::sqrtf(minSqRad) * 1.3f / minSqDist;
+	glm::vec3 evadeVector = glm::vec3(evadeVectorV2.x, 0.0f, evadeVectorV2.y) * dt;
 
 	return evadeVector;
 }

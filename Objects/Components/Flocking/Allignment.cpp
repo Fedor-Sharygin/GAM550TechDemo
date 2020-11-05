@@ -5,7 +5,7 @@
 #include "..//..//GameObject.h"
 
 
-glm::vec3 Allignment::GetForwVectAddition()
+glm::vec3 Allignment::GetForwVectAddition(float dt)
 {
 	Transform* mTrans = mOwner->GetOwner()->GetComponent<Transform>();
 	glm::vec3 mFront = mTrans->GetForward();
@@ -46,7 +46,7 @@ glm::vec3 Allignment::GetForwVectAddition()
 
 	collect = collect / closeNum;
 	collect = glm::normalize(collect);
-	glm::vec2 diff = collect - mFrontV2;
+	glm::vec2 diff = (collect - mFrontV2) / 10.0f * dt;
 	return glm::vec3(diff.x, 0.0f, diff.y);
 }
 

@@ -6,7 +6,7 @@
 
 
 
-glm::vec3 Cohesion::GetForwVectAddition()
+glm::vec3 Cohesion::GetForwVectAddition(float dt)
 {
 	Transform* mTrans = mOwner->GetOwner()->GetComponent<Transform>();
 	glm::vec3 mPos = mTrans->GetPosition();
@@ -31,7 +31,7 @@ glm::vec3 Cohesion::GetForwVectAddition()
 		if (sqDist <= this->sqCohRadius)
 		{
 			closeNum += 1.0f;
-			collect += oPosV2 - mPosV2;
+			collect += oPosV2;
 		}
 	}
 
@@ -41,9 +41,10 @@ glm::vec3 Cohesion::GetForwVectAddition()
 		return glm::vec3(0.0f);
 	}
 
-	collect = collect / closeNum;
-	collect = glm::normalize(collect);
-	return glm::vec3(collect.x, 0.0f, collect.y);
+	collect /= closeNum;
+	collect -= mPosV2;
+	collect *= collect.length();
+	return glm::vec3(collect.x, 0.0f, collect.y) * dt;
 }
 
 

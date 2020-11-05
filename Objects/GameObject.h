@@ -5,6 +5,7 @@
 
 #include "Component.h"
 #include "Components//Flocker.h"
+#include "Components//Transform.h"
 
 class GameObject
 {
@@ -42,6 +43,8 @@ public:
 	template<>
 	Flocker* AddComponent<Flocker>()
 	{
+		std::random_device seed;
+		generator.seed(seed());
 		if (goComponents.end() != goComponents.find(std::type_index(typeid(Flocker))))
 		{
 			auto a = goComponents[std::type_index(typeid(Flocker))];
@@ -50,13 +53,14 @@ public:
 
 		using Type = std::uniform_real_distribution<float>;
 
-		float bodyRadius = 3.0f;
+		float bodyRadius = 2.0f;
 		float wanderAlpha = 10.0f;
-		float sepRadius = 10.0f;
-		float allRadius = 10.0f;
-		float cohRadius = 10.0f;
+		float sepRadius = 15.0f;
+		float allRadius = 20.0f;
+		float cohRadius = 20.0f;
 		float evadeDistance = 5.0f;
-		float velocity = 10.0f;
+		float velocity = 3.0f;
+		float acceleration = 0.5f;
 
 		Type brRand = Type(bodyRadius - 0.5f, bodyRadius + 0.5f);
 		//Type waRand = Type(wanderAlpha - 0.5f, wanderAlpha + 0.5f);
@@ -74,7 +78,8 @@ public:
 		float ned = edRand(generator);
 		//float nve = veRand(generator);
 
-		Flocker* nFl = new Flocker(nbr, wanderAlpha, nsr, nar, ncr, ned, velocity);
+		glm::vec3 speed = this->GetComponent<Transform>()->GetForward() * velocity;
+		Flocker* nFl = new Flocker(nbr, wanderAlpha, nsr, nar, ncr, ned, speed, acceleration);
 		nFl->SetOwner(this);
 		goComponents[std::type_index(typeid(Flocker))] = nFl;
 		return nFl;

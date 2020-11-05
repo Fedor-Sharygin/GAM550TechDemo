@@ -17,7 +17,7 @@ public:
 	void SetEvadeSquareDistance(float nDist) { sqDist = nDist; };
 	void PassOwner(Flocker* nFlock) { mOwner = nFlock; };
 
-	glm::vec3 GetForwVectAddition();
+	glm::vec3 GetForwVectAddition(float dt);
 public:
 private:
 private:

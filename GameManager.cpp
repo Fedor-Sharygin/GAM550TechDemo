@@ -184,7 +184,7 @@ void GameManager::Demo(size_t size)
 			fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
 			fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
 
-			fTrans->SetPosition(glm::vec3(float(i % 6) * 10.0f - 25.0f, 0.0f, -20.0f - float(i / 6) * 5.0f));
+			fTrans->SetPosition(glm::vec3(float(i % 4) * 10.0f - 15.0f, 0.0f, -20.0f - float(i / 4) * 5.0f));
 			fTrans->SetScale(glm::vec3((1.0f / 10.0f)));
 
 			fFlock->PassOwner(static_cast<FlockingManager*>(gameManagers[MANAGER_TYPE::TYPE_FLOCKING_MANAGER]));

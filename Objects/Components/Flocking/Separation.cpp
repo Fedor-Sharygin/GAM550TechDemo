@@ -7,7 +7,7 @@
 
 
 
-glm::vec3 Separation::GetForwVectAddition()
+glm::vec3 Separation::GetForwVectAddition(float dt)
 {
 	Transform* mTrans = mOwner->GetOwner()->GetComponent<Transform>();
 	glm::vec3 mPos = mTrans->GetPosition();
@@ -42,9 +42,11 @@ glm::vec3 Separation::GetForwVectAddition()
 		return glm::vec3(0.0f);
 	}
 
-	collect = collect / closeNum;
+	//collect = glm::normalize(collect);
+	//collect *= closeNum;
+	float revLen = 1.0f / collect.length();
 	collect = glm::normalize(collect);
-	glm::vec3 ret = glm::vec3(collect.x, 0.0f, collect.y);
+	glm::vec3 ret = glm::vec3(collect.x, 0.0f, collect.y) * revLen * dt;
 	return ret;
 }
 

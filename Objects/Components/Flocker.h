@@ -24,7 +24,7 @@ class FlockingManager;
 class Flocker : public Component
 {
 public:
-	Flocker(float bodyRadius, float wanderAlpha, float sepRadius, float allRadius, float cohRadius, float evadeDistance, float velocity);
+	Flocker(float bodyRadius, float wanderAlpha, float sepRadius, float allRadius, float cohRadius, float evadeDistance, glm::vec3 speed, float acceleration);
 	virtual ~Flocker();
 
 	virtual void Update(float dt) override;
@@ -46,7 +46,9 @@ private:
 	FlockingManager* flMan;
 	
 	float bRad, wAl, sepRad, allRad, cohRad, evDist;
-	float mVelocity;
+	float mAcceleration;
+
+	glm::vec3 mSpeed;
 
 	Wander* wander;
 	Separation* separation;

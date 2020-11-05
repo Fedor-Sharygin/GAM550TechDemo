@@ -40,9 +40,9 @@ glm::vec3 Transform::GetForward()
 	float pitch = rotation.x;
 	float yaw = rotation.y;
 	float roll = rotation.z;
-	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front.x = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 	front.y = sin(glm::radians(pitch));
-	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front.z = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
 	front = glm::normalize(front);
 	return front;
 }
