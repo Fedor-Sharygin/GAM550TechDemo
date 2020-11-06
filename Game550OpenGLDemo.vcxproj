@@ -174,7 +174,9 @@
     <ClCompile Include="Managers\PhysicsManager.cpp" />
     <ClCompile Include="Objects\Component.cpp" />
     <ClCompile Include="Objects\Components\AudioComponent.cpp" />
+    <ClCompile Include="Objects\Components\AudioListener.cpp" />
     <ClCompile Include="Objects\Components\Body.cpp" />
+    <ClCompile Include="Objects\Components\CameraComponent.cpp" />
     <ClCompile Include="Objects\Components\ControlComponent.cpp" />
     <ClCompile Include="Objects\Components\Flocking\Allignment.cpp" />
     <ClCompile Include="Objects\Components\Flocking\Cohesion.cpp" />
@@ -216,7 +218,9 @@
     <ClInclude Include="Managers\PhysicsManager.h" />
     <ClInclude Include="Objects\Component.h" />
     <ClInclude Include="Objects\Components\AudioComponent.h" />
+    <ClInclude Include="Objects\Components\AudioListener.h" />
     <ClInclude Include="Objects\Components\Body.h" />
+    <ClInclude Include="Objects\Components\CameraComponent.h" />
     <ClInclude Include="Objects\Components\Components.h" />
     <ClInclude Include="Objects\Components\ControlComponent.h" />
     <ClInclude Include="Objects\Components\Flocking\Allignment.h" />

@@ -10,6 +10,8 @@
 #include "ControlComponent.h"
 #include "Body.h"
 #include "Flocker.h"
+#include "CameraComponent.h"
+
 
 #endif
 
