@@ -44,9 +44,17 @@ public:
 
 		/// otherwise add this component to
 		/// the corresponding manager and return it
-		Manager* reqManager = gameManagers[CTtoMT[((Component*)retComp)->cType].first];
-		reqManager->SubscribeComponent(retComp);
-		dynamic_cast<EventManager*>(gameManagers[MANAGER_TYPE::TYPE_EVENT_MANAGER])->Subscribe(retComp, CTtoMT[((Component*)retComp)->cType].second);
+		/// 
+		/// also: only subscribe components to the managers
+		/// if their correspondace is written in CTtoMT
+		/// otherwise Transform component gets subscribed
+		/// to all 0-d out managers and events
+		if (CTtoMT.end() != CTtoMT.find(((Component*)retComp)->cType))
+		{
+			Manager* reqManager = gameManagers[CTtoMT[((Component*)retComp)->cType].first];
+			reqManager->SubscribeComponent(retComp);
+			dynamic_cast<EventManager*>(gameManagers[MANAGER_TYPE::TYPE_EVENT_MANAGER])->Subscribe(retComp, CTtoMT[((Component*)retComp)->cType].second);
+		}
 		return retComp;
 	};
 

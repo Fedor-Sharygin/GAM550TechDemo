@@ -68,7 +68,12 @@ void EventManager::End()
 
 void EventManager::Subscribe(Component* nSub, EVENT_TYPE evType)
 {
-	subscriptions[evType].push_back(nSub);
+	/// Default event doesn't do anything
+	/// no need for subscribers
+	if (EVENT_TYPE::TYPE_DEFAULT != evType)
+	{
+		subscriptions[evType].push_back(nSub);
+	}
 }
 
 void EventManager::BroadCastEvent(Event* ev)

@@ -1,15 +1,18 @@
 #include "pch.h"
 #include "AudioComponent.h"
 
+#include "Components.h"
 #include "..//GameObject.h"
 
 #include "..//..//Managers//Managers.h"
+#include "..//..//Managers//Events//Events.h"
 
 
 
 AudioComponent::AudioComponent()
 	:
-	Component(COMPONENT_TYPE::TYPE_AUDIO)
+	Component(COMPONENT_TYPE::TYPE_AUDIO),
+	mType(AUDIO_TYPE::TYPE_DEFAULT)
 {
 	Initialize();
 }
@@ -61,6 +64,27 @@ void AudioComponent::SetSound(std::string nName, FMOD_MODE soundLoadMode)
 FMOD::Sound* AudioComponent::GetSound() const
 {
 	return mSound;
+}
+
+
+void AudioComponent::HandleEvent(Event* nEvent)
+{
+	/// if this object collided
+	/// play the sound effect
+	if (EVENT_TYPE::TYPE_CONTACT == nEvent->evType)
+	{
+		if (AUDIO_TYPE::TYPE_SFX == this->mType)
+		{
+			Body* mBody = this->GetOwner()->GetComponent<Body>();
+			ContactEvent* tEvent = static_cast<ContactEvent*>(nEvent);
+			/// only play the sfx if this object's body
+			/// is one of the bodies in the contact
+			if (mBody == tEvent->passedContact->GetBody1() || mBody == tEvent->passedContact->GetBody2())
+			{
+				this->StartAudio();
+			}
+		}
+	}
 }
 
 

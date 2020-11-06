@@ -8,7 +8,7 @@ class GameObjectManager;
 class EventManager;
 class FrameRateManager;
 
-const glm::vec3 gravity = glm::vec3(0.0f, -9.8f, 0.0f);
+const glm::vec3 gravity = glm::vec3(0.0f, -0.98f, 0.0f);
 
 class PhysicsManager : public Manager
 {
@@ -23,14 +23,12 @@ public:
 	virtual void Initialize() override;
 	virtual void End() override;
 
-	void SetGOManager(GameObjectManager* nGOManager);
-	void SetFrManager(FrameRateManager* nFrManager);
-	void SetEventManager(EventManager* nEventManager);
+	void PassFrameRateManager(FrameRateManager* nFrManager) { mFrManager = nFrManager; };
+	void PassEventManager(EventManager* nEventManager) { mEventManager = nEventManager; };
 public:
 private:
 private:
 	CollisionManager* mCollisionManager;
-	GameObjectManager* mGOManager;
 	EventManager* mEventManager;
 	FrameRateManager* mFrManager;
 };

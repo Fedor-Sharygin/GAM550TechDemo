@@ -9,6 +9,13 @@
 class AssetManager;
 class AudioManager;
 
+enum class AUDIO_TYPE
+{
+	TYPE_MUSIC,
+	TYPE_SFX,
+	TYPE_DEFAULT
+};
+
 class AudioComponent : public Component
 {
 public:
@@ -23,7 +30,7 @@ public:
 	virtual void End() override;
 
 	/// Create an event to change the volume(?)
-	virtual void HandleEvent(Event* nEvent) override {};
+	virtual void HandleEvent(Event* nEvent) override;
 
 	void SetSound(std::string nName, FMOD_MODE soundLoadMode = FMOD_DEFAULT);
 	FMOD::Sound* GetSound() const;
@@ -36,11 +43,15 @@ public:
 	void StartAudio();
 	void PauseAudio();
 	void StopAudio();
+
+	void SetAudioType(AUDIO_TYPE nType) { mType = nType; };
 public:
 private:
 private:
 	bool playing;
 	FMOD::Sound* mSound;
+
+	AUDIO_TYPE mType;
 	
 	AssetManager* loader;
 	AudioManager* mediaPlayer;

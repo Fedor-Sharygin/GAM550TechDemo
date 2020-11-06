@@ -1,4 +1,37 @@
-﻿  Allignment.cpp
+﻿  GameManager.cpp
+  EventManager.cpp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  PhysicsManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  AudioComponent.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  Body.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  Flocker.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocker.cpp(53,14): warning C4244: 'initializing': conversion from 'glm::vec<3,float,glm::packed_highp>::length_type' to 'float', possible loss of data
+  Allignment.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  Cohesion.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  Evade.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  Separation.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  SphereMover.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  Wander.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  Generating Code...
   Game550OpenGLDemo.vcxproj -> C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Debug\Game550OpenGLDemo.exe

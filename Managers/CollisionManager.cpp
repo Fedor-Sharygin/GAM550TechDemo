@@ -23,7 +23,7 @@ float AnimatedSphereVSSphere(glm::vec3& spSt1, glm::vec3& spEn1, float radius1,
 {
 	glm::vec3 spDir1 = spEn1 - spSt1;
 	glm::vec3 spDir1N = spDir1;
-	glm::normalize(spDir1N);
+	spDir1N = glm::normalize(spDir1N);
 	glm::vec3 spSp12 = spCen2 - spSt1;
 
 	float dotProd = glm::dot(spDir1N, spSp12);

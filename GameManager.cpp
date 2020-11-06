@@ -10,7 +10,7 @@
 GameManager::GameManager()
 {
 	CTtoMT = {
-		{ COMPONENT_TYPE::TYPE_AUDIO,	std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_AUDIO,	std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
 		{ COMPONENT_TYPE::TYPE_BODY,	std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
 		{ COMPONENT_TYPE::TYPE_MODEL,	std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
 		{ COMPONENT_TYPE::TYPE_AI,		std::make_pair(MANAGER_TYPE::TYPE_FLOCKING_MANAGER, EVENT_TYPE::TYPE_DEFAULT) }
@@ -40,6 +40,9 @@ GameManager::GameManager()
 	EventManager* mEventManager = new EventManager();
 	PhysicsManager* mPhysicsManager = new PhysicsManager();
 	FlockingManager* mFlockingManager = new FlockingManager();
+
+	mPhysicsManager->PassEventManager(mEventManager);
+	mPhysicsManager->PassFrameRateManager(mFRManager);
 
 	gameManagers[mFRManager->mType] = mFRManager;
 	gameManagers[mInputManager->mType] = mInputManager;
@@ -171,7 +174,7 @@ void GameManager::Demo(size_t size)
 		thTrans->SetScale(glm::vec3((20.0f, 1.0f / 5.0f, 20.0f)));
 	}
 
-	if (26 == size)
+	if (28 == size)
 	{
 		for (int i = 0; i < 24; ++i)
 		{
@@ -195,10 +198,55 @@ void GameManager::Demo(size_t size)
 		sAudComp->PassMediaPlayer(static_cast<AudioManager*>(gameManagers[MANAGER_TYPE::TYPE_AUDIO_MANAGER]));
 		sAudComp->SetSound("sample.wav", FMOD_LOOP_NORMAL);
 		sAudComp->SetChannelName("sampleMusic");
+		sAudComp->SetAudioType(AUDIO_TYPE::TYPE_MUSIC);
 
 		ControlComponent* tContr = this->AddComponentTo<ControlComponent>(gameObjects[25]);
 		tContr->PassControlee(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
 		tContr->PassInputStream(static_cast<InputManager*>(gameManagers[MANAGER_TYPE::TYPE_INPUT_MANAGER]));
+
+
+		ModelComponent* fBdModComp = this->AddComponentTo<ModelComponent>(gameObjects[26]);
+		Transform* fBdTrans = this->AddComponentTo<Transform>(gameObjects[26]);
+		Body* fBdBody = this->AddComponentTo<Body>(gameObjects[26]);
+		AudioComponent* fBdSfx = this->AddComponentTo<AudioComponent>(gameObjects[26]);
+
+		fBdModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		fBdModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		fBdModComp->SetModel("sara/sara-20110310-blender/Sara_20110310.obj");		/// find a model online and pass the name
+
+		fBdTrans->SetPosition(glm::vec3(-30.0f, 20.0f, -20.0f));
+		fBdTrans->SetScale(glm::vec3((1.0f / 5.0f)));
+
+		fBdBody->SetMass(1.0f);
+		fBdBody->position = glm::vec3(-30.0f, 20.0f, -20.0f);
+		fBdBody->nextPosition = glm::vec3(-30.0f, 20.0f, -20.0f);
+		Shape* fBdShape = fBdBody->SetBodyShape(ShapeType::TYPE_SPHERE);
+		static_cast<Sphere*>(fBdShape)->SetRadius(1.0f);
+
+		fBdSfx->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		fBdSfx->PassMediaPlayer(static_cast<AudioManager*>(gameManagers[MANAGER_TYPE::TYPE_AUDIO_MANAGER]));
+		fBdSfx->SetSound("seeds.wav", FMOD_3D | FMOD_LOOP_OFF);
+		fBdSfx->SetChannelName("soundEffects");
+		fBdSfx->SetAudioType(AUDIO_TYPE::TYPE_SFX);
+
+
+		ModelComponent* sBdModComp = this->AddComponentTo<ModelComponent>(gameObjects[27]);
+		Transform* sBdTrans = this->AddComponentTo<Transform>(gameObjects[27]);
+		Body* sBdBody = this->AddComponentTo<Body>(gameObjects[27]);
+
+		sBdModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		sBdModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		sBdModComp->SetModel("sara/sara-20110310-blender/Sara_20110310.obj");		/// find a model online and pass the name
+
+		sBdTrans->SetPosition(glm::vec3(-30.0f, 0.0f, -20.0f));
+		sBdTrans->SetScale(glm::vec3((1.0f / 5.0f)));
+
+		sBdBody->SetMass(1.0f);
+		sBdBody->position = glm::vec3(-30.0f, 0.0f, -20.0f);
+		sBdBody->nextPosition = glm::vec3(-30.0f, 0.0f, -20.0f);
+		Shape* sBdShape = sBdBody->SetBodyShape(ShapeType::TYPE_SPHERE);
+		static_cast<Sphere*>(sBdShape)->SetRadius(1.0f);
+		sBdBody->SetMove(false);
 	}
 }
 
