@@ -3,6 +3,8 @@
 
 #include "..//Objects//Component.h"
 
+#include "FrameRateManager.h"
+
 
 
 #define ASSERT_RESULT(result)					\
@@ -63,6 +65,24 @@ void AudioManager::End()
 
 void AudioManager::Update(float dt)
 {
+	/*
+	* this was used to test the setPaused
+	* fmod channel function
+	if (FrameRateManager::frameCount % 120 == 0)
+	{
+		for (auto& [_, chan] : allChannels)
+		{
+			chan->setPaused(false);
+		}
+	}
+	else if (FrameRateManager::frameCount % 60 == 0)
+	{
+		for (auto& [_, chan] : allChannels)
+		{
+			chan->setPaused(true);
+		}
+	}*/
+
 	for (auto& audioComp : comps)
 	{
 		audioComp->Update(dt);
@@ -84,19 +104,19 @@ FMOD::System* AudioManager::GetSystem() const
 
 
 
-void AudioManager::StartAudio(FMOD::Sound* pSound, std::string nChannelName)
+void AudioManager::StartAudio(FMOD::Sound* pSound, std::string nChannelName, bool paused)
 {
 	/// look if passed channel name already exists
 	/// if not => create a new channel and play sound there
 	if (allChannels.end() == allChannels.find(nChannelName))
 	{
 		FMOD::Channel* nChannel = nullptr;
-		ASSERT_RESULT(mSystem->playSound(pSound, mChannelGroup, false, &nChannel));
+		ASSERT_RESULT(mSystem->playSound(pSound, mChannelGroup, paused, &nChannel));
 		allChannels[nChannelName] = nChannel;
 	}
 	else	/// otherwise => play on existing channel
 	{
-		ASSERT_RESULT(mSystem->playSound(pSound, mChannelGroup, false, &allChannels[nChannelName]));
+		ASSERT_RESULT(mSystem->playSound(pSound, mChannelGroup, paused, &allChannels[nChannelName]));
 	}
 }
 

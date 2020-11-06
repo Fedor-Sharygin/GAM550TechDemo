@@ -2,7 +2,8 @@
 #include "PhysicsManager.h"
 
 #include "..//Objects//Components//Components.h"
-#include "CollisionManager.h"
+#include "Managers.h"
+#include "Events//Events.h"
 
 
 
@@ -21,30 +22,23 @@ PhysicsManager::~PhysicsManager()
 
 void PhysicsManager::Initialize()
 {
+	mEventManager = nullptr;
+	mFrManager = nullptr;
 	mCollisionManager = new CollisionManager();
 }
 
 void PhysicsManager::End()
 {
+	mEventManager = nullptr;
+	mFrManager = nullptr;
 	delete mCollisionManager;
+	for (auto& co : comps)
+	{
+		delete co;
+	}
 	comps.clear();
 }
 
-
-void PhysicsManager::SetGOManager(GameObjectManager* nGOManager)
-{
-	mGOManager = nGOManager;
-}
-
-void PhysicsManager::SetEventManager(EventManager* nEventManager)
-{
-	mEventManager = nEventManager;
-}
-
-void PhysicsManager::SetFrManager(FrameRateManager* nFrManager)
-{
-	mFrManager = nFrManager;
-}
 
 void PhysicsManager::Update(float dt)
 {
@@ -81,6 +75,12 @@ void PhysicsManager::Update(float dt)
 
 
 	/// Redo the contact event registration
+	for (auto& contact : contacts)
+	{
+		auto ncEv = mEventManager->PassEvent<ContactEvent>();
+		ncEv->passedContact = contact;
+		ncEv->timeLeft = contact->GetTime() * mFrManager->GetFrameTime();
+	}
 
 	// right now => just write that the collision happened between bodies of these types
 	// in the future => create an event that bodies will handle

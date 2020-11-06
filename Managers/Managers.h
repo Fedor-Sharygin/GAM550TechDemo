@@ -9,6 +9,7 @@
 #include "InputManager.h"
 #include "AudioManager.h"
 #include "PhysicsManager.h"
+#include "CollisionManager.h"
 #include "EventManager.h"
 #include "FlockingManager.h"
 

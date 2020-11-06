@@ -24,7 +24,7 @@ public:
 	FMOD::System* GetSystem() const;
 
 
-	void StartAudio(FMOD::Sound* pSound, std::string nChannelName);
+	void StartAudio(FMOD::Sound* pSound, std::string nChannelName, bool paused = false);
 public:
 private:
 private:

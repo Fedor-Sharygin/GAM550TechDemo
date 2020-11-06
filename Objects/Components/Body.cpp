@@ -99,7 +99,7 @@ void Body::HandleEvent(Event* event)
 				{
 					if (ShapeType::TYPE_SPHERE == otherType)
 					{
-						glm::normalize(toOtherCenNorm);
+						toOtherCenNorm = glm::normalize(toOtherCenNorm);
 						
 						velocity = 0.9f * (velocity - 
 							2.0f * toOtherCenNorm * glm::dot(toOtherCenNorm, velocity));
