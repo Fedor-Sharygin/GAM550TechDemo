@@ -106,8 +106,11 @@ void GraphicsManager::Update(float dt)
 	lightCubeShader->setMat4("view", view);
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, lightPosition);
-	model = glm::scale(model, glm::vec3(0.8f)); // a smaller cube
+	model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
 	lightCubeShader->setMat4("model", model);
+
+	glBindVertexArray(lightCubeVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 /*	/// Change the depth test to draw
 	/// the skybox as if it was far away
