@@ -22,13 +22,13 @@ GameManager::GameManager()
 		COMPONENT_TYPE::TYPE_AI
 	};
 
-	GraphicsManager* mGrManager = new GraphicsManager();
-	mGrManager->Initialize();
-
 	AssetManager* mAssetManager = new AssetManager();
 	mAssetManager->Initialize();
-	mGrManager->skybox->PassLoader(mAssetManager);
-	mGrManager->skybox->LoadFaces();
+
+	GraphicsManager* mGrManager = new GraphicsManager(mAssetManager);
+	mGrManager->Initialize();
+	//mGrManager->skybox->PassLoader(mAssetManager);
+	//mGrManager->skybox->LoadFaces();
 
 	FrameRateManager* mFRManager = new FrameRateManager();
 	mFRManager->Initialize();
@@ -128,6 +128,13 @@ void GameManager::Demo(size_t size)
 	for (size_t i = 0; i < size; ++i)
 	{
 		this->CreateGameObject();
+	}
+
+	if (1 == size)
+	{
+		ControlComponent* tContr = this->AddComponentTo<ControlComponent>(gameObjects[0]);
+		tContr->PassControlee(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		tContr->PassInputStream(static_cast<InputManager*>(gameManagers[MANAGER_TYPE::TYPE_INPUT_MANAGER]));
 	}
 
 	if (4 == size)

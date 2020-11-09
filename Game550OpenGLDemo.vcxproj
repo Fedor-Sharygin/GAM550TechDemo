@@ -237,12 +237,18 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Graphics\Shaders\debugQuad.fs" />
+    <None Include="Graphics\Shaders\debugQuad.vs" />
     <None Include="Graphics\Shaders\debugShader.frag" />
     <None Include="Graphics\Shaders\debugShader.vert" />
+    <None Include="Graphics\Shaders\lightCubeShader.fs" />
+    <None Include="Graphics\Shaders\lightCubeShader.vs" />
     <None Include="Graphics\Shaders\mshader.fs" />
     <None Include="Graphics\Shaders\mshader.vs" />
     <None Include="Graphics\Shaders\shadowDepthShader.fs" />
     <None Include="Graphics\Shaders\shadowDepthShader.vs" />
+    <None Include="Graphics\Shaders\shadowMappingDepth.fs" />
+    <None Include="Graphics\Shaders\shadowMappingDepth.vs" />
     <None Include="Graphics\Shaders\shadowMapShader.fs" />
     <None Include="Graphics\Shaders\shadowMapShader.vs" />
     <None Include="Graphics\Shaders\skyboxShader.fs" />
