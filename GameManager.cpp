@@ -27,8 +27,8 @@ GameManager::GameManager()
 
 	GraphicsManager* mGrManager = new GraphicsManager(mAssetManager);
 	mGrManager->Initialize();
-	//mGrManager->skybox->PassLoader(mAssetManager);
-	//mGrManager->skybox->LoadFaces();
+	mGrManager->skybox->PassLoader(mAssetManager);
+	mGrManager->skybox->LoadFaces();
 
 	FrameRateManager* mFRManager = new FrameRateManager();
 	mFRManager->Initialize();
@@ -130,11 +130,37 @@ void GameManager::Demo(size_t size)
 		this->CreateGameObject();
 	}
 
-	if (1 == size)
+	if (3 == size)
 	{
 		ControlComponent* tContr = this->AddComponentTo<ControlComponent>(gameObjects[0]);
 		tContr->PassControlee(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
 		tContr->PassInputStream(static_cast<InputManager*>(gameManagers[MANAGER_TYPE::TYPE_INPUT_MANAGER]));
+
+		/// 1st object (0th)
+		/// test the model loading and draw
+		ModelComponent* fModComp = this->AddComponentTo<ModelComponent>(gameObjects[1]);
+		Transform* fTrans = this->AddComponentTo<Transform>(gameObjects[1]);
+		//Body* fBody = AddComponentTo<Body>(gameObjects[0]);
+
+		fModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		fModComp->SetModel("sara/sara-20110310-blender/Sara_20110310.obj");		/// find a model online and pass the name
+
+		fTrans->SetPosition(glm::vec3(0.0f, 0.0f, -20.0f));
+		fTrans->SetScale(glm::vec3((1.0f / 2.0f)));
+
+		/// 1st object (0th)
+		/// test the model loading and draw
+		ModelComponent* sModComp = this->AddComponentTo<ModelComponent>(gameObjects[2]);
+		Transform* sTrans = this->AddComponentTo<Transform>(gameObjects[2]);
+		//Body* fBody = AddComponentTo<Body>(gameObjects[0]);
+
+		sModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		sModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
+		sModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
+
+		sTrans->SetPosition(glm::vec3(20.0f, 0.0f, -20.0f));
+		sTrans->SetScale(glm::vec3((1.0f / 2.0f)));
 	}
 
 	if (4 == size)

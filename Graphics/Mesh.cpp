@@ -55,18 +55,31 @@ void Mesh::Draw(Shader* shader)
 	for (unsigned int i = 0; i < textures.size(); i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i);
+		std::string materialName = "material.";
 		std::string number;
 		std::string name = textures[i].type;
 		if (name == "texture_diffuse")
+		{
+			name = "diffuse";
 			number = std::to_string(diffuseNr++);
+		}
 		else if (name == "texture_specular")
+		{
+			name = "specular";
 			number = std::to_string(specularNr++);
+		}
 		else if (name == "texture_normal")
+		{
+			name = "normal";
 			number = std::to_string(normalNr++);
+		}
 		else if (name == "texture_height")
+		{
+			name = "height";
 			number = std::to_string(heightNr++);
+		}
 
-		glUniform1i(glGetUniformLocation(shader->ID, (name + number).c_str()), i);
+		glUniform1i(glGetUniformLocation(shader->ID, (materialName + name/* + number*/).c_str()), i);
 		glBindTexture(GL_TEXTURE_2D, textures[i].id);
 	}
 

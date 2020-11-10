@@ -90,7 +90,7 @@ void GraphicsManager::Update(float dt)
 	glm::mat4 view = baseCamera->GetViewMatrix();
 	baseShader->setMat4("projection", projection);
 	baseShader->setMat4("view", view);
-	glm::mat4 model = glm::mat4(1.0f);
+/*	glm::mat4 model = glm::mat4(1.0f);
 	baseShader->setMat4("model", model);
 	// bind diffuse map
 	glActiveTexture(GL_TEXTURE0);
@@ -99,12 +99,17 @@ void GraphicsManager::Update(float dt)
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, specularMap);
 	glBindVertexArray(cubeVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glDrawArrays(GL_TRIANGLES, 0, 36);*/
+
+	for (auto& sculp : comps)
+	{
+		static_cast<ModelComponent*>(sculp)->Draw(baseShader);
+	}
 
 	lightCubeShader->Use();
 	lightCubeShader->setMat4("projection", projection);
 	lightCubeShader->setMat4("view", view);
-	model = glm::mat4(1.0f);
+	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, lightPosition);
 	model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
 	lightCubeShader->setMat4("model", model);
@@ -112,7 +117,7 @@ void GraphicsManager::Update(float dt)
 	glBindVertexArray(lightCubeVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
-/*	/// Change the depth test to draw
+	/// Change the depth test to draw
 	/// the skybox as if it was far away
 	glDepthFunc(GL_LEQUAL);
 	sbShader->Use();
@@ -121,7 +126,7 @@ void GraphicsManager::Update(float dt)
 	sbShader->setMat4("projection", projection);
 	sbShader->setMat4("view", view);
 	skybox->Draw();
-	glDepthFunc(GL_LESS);*/
+	glDepthFunc(GL_LESS);
 }
 
 void GraphicsManager::FrameStart()
@@ -192,7 +197,7 @@ void GraphicsManager::Initialize()
 	sbShader = new Shader("Graphics/Shaders/skyboxShader.vs", "Graphics/Shaders/skyboxShader.fs");
 
 
-	glGenVertexArrays(1, &cubeVAO);
+/*	glGenVertexArrays(1, &cubeVAO);
 	glGenBuffers(1, &VBO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -204,14 +209,18 @@ void GraphicsManager::Initialize()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(2);*/
 
 
 	// second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
 	glGenVertexArrays(1, &lightCubeVAO);
-	glBindVertexArray(lightCubeVAO);
+	glGenBuffers(1, &VBO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+
+	glBindVertexArray(lightCubeVAO);
+//	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	// note that we update the lamp's position attribute's stride to reflect the updated buffer data
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
@@ -219,12 +228,12 @@ void GraphicsManager::Initialize()
 	lightPosition = glm::vec3(-2.0f, 4.0f, -1.0f);
 
 
-	diffuseMap = loader->LoadTexture("container2.png");
+/*	diffuseMap = loader->LoadTexture("container2.png");
 	specularMap = loader->LoadTexture("container2_specular.png");
 
 	baseShader->Use();
 	baseShader->SetInt("material.diffuse", 0);
-	baseShader->SetInt("material.specular", 1);
+	baseShader->SetInt("material.specular", 1);*/
 }
 
 
