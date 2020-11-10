@@ -273,5 +273,7 @@
     <None Include="Graphics\Shaders\shadowMapShader.vs" />
     <None Include="Graphics\Shaders\shadowDepthShader.vs" />
     <None Include="Graphics\Shaders\shadowDepthShader.fs" />
+    <None Include="Graphics\Shaders\lightCube.vs" />
+    <None Include="Graphics\Shaders\lightCube.fs" />
   </ItemGroup>
 </Project>

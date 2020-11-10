@@ -39,7 +39,13 @@ public:
 	Shader* shadowShader;
 	unsigned int shadowFBO, depthMap;
 	unsigned int shadowMapWidth, shadowMapHeight;
+
+	/// light cube attributes
+	Shader* lcShader;
 	glm::vec3 lightPosition;
+	unsigned int lcVBO, lcVAO;
+	float cubeVertices[3 * 6 * 6];
+	float colorTime;
 private:
 private:
 	float scrWidth;

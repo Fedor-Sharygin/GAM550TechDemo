@@ -14,50 +14,99 @@ GraphicsManager::GraphicsManager()
 	:
 	Manager(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER),
 	scrHeight(600.0f),
-	scrWidth(800.0f)
+	scrWidth(800.0f),
+	cubeVertices{
+		-0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f,
+		 0.5f,  0.5f, -0.5f,
+		 0.5f,  0.5f, -0.5f,
+		-0.5f,  0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
+
+		-0.5f, -0.5f,  0.5f,
+		 0.5f, -0.5f,  0.5f,
+		 0.5f,  0.5f,  0.5f,
+		 0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f,  0.5f,
+		-0.5f, -0.5f,  0.5f,
+
+		-0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f,  0.5f,
+		-0.5f,  0.5f,  0.5f,
+
+		 0.5f,  0.5f,  0.5f,
+		 0.5f,  0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f,  0.5f,
+		 0.5f,  0.5f,  0.5f,
+
+		-0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f,  0.5f,
+		 0.5f, -0.5f,  0.5f,
+		-0.5f, -0.5f,  0.5f,
+		-0.5f, -0.5f, -0.5f,
+
+		-0.5f,  0.5f, -0.5f,
+		 0.5f,  0.5f, -0.5f,
+		 0.5f,  0.5f,  0.5f,
+		 0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f, -0.5f
+	},
+	colorTime(0.0f),
+	lightPosition(glm::vec3(0.0f, 20.0f, 10.0f))
 {}
 
 
 void GraphicsManager::Update(float dt)
 {
-	glm::mat4 lightProjection, lightView;
-	glm::mat4 lightSpaceMatrix;
-	float near_plane = 1.0f, far_plane = 200.0f;
-	lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-	lightView = glm::lookAt(lightPosition, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
-	lightSpaceMatrix = lightProjection * lightView;
+	colorTime += dt;
 
-	shadowShader->Use();
-	shadowShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
-
-	glViewport(0, 0, shadowMapWidth, shadowMapHeight);
-	glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		for (auto& co : comps)
-		{
-			static_cast<ModelComponent*>(co)->Draw(shadowShader);
-		}
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	// reset viewport
-	glViewport(0, 0, scrWidth, scrHeight);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	
 	baseShader->Use();
+	baseShader->setVec3("light.position", lightPosition);
+	baseShader->setVec3("viewPos", baseCamera->Position);
+
+	// light properties
+	glm::vec3 lightColor;
+	lightColor.x = sin(colorTime * 2.0f);
+	lightColor.y = sin(colorTime * 0.7f);
+	lightColor.z = sin(colorTime * 1.3f);
+	glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
+	glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
+	baseShader->setVec3("light.ambient", ambientColor);
+	baseShader->setVec3("light.diffuse", diffuseColor);
+	baseShader->setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+
+	// material properties
+	baseShader->SetFloat("material.shininess", 64.0f);
+
+	// view/projection transformations
 	glm::mat4 projection = glm::perspective(glm::radians(baseCamera->Zoom), (float)scrWidth / (float)scrHeight, 0.1f, 100.0f);
 	glm::mat4 view = baseCamera->GetViewMatrix();
 	baseShader->setMat4("projection", projection);
 	baseShader->setMat4("view", view);
-	// set light uniforms
-	baseShader->setVec3("viewPos", baseCamera->Position);
-	baseShader->setVec3("lightPos", lightPosition);
-	baseShader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
 
 	for (auto& co : comps)
 	{
 		static_cast<ModelComponent*>(co)->Draw(baseShader);
 	}
+
+	lcShader->Use();
+	lcShader->setMat4("projection", projection);
+	lcShader->setMat4("view", view);
+	glm::mat4 model = glm::mat4(1.0f);
+	model = glm::translate(model, lightPosition);
+	model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+	lcShader->setMat4("model", model);
+
+	glBindVertexArray(lcVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
 
 	/// Change the depth test to draw
 	/// the skybox as if it was far away
@@ -123,7 +172,7 @@ void GraphicsManager::Initialize()
 	// -----------------------------
 	glEnable(GL_DEPTH_TEST);
 
-	baseShader = new Shader("Graphics/Shaders/shadowMapShader.vs", "Graphics/Shaders/shadowMapShader.fs");
+	baseShader = new Shader("Graphics/Shaders/mshader.vs", "Graphics/Shaders/mshader.fs");
 	baseCamera = new Camera(glm::vec3(0.0f, 0.0f, 3.0f));
 
 	std::vector<std::string> faces
@@ -139,33 +188,23 @@ void GraphicsManager::Initialize()
 	skybox->PassDrawer(this);
 	sbShader = new Shader("Graphics/Shaders/skyboxShader.vs", "Graphics/Shaders/skyboxShader.fs");
 
-	shadowShader = new Shader("Graphics/Shaders/shadowDepthShader.vs", "Graphics/Shaders/shadowDepthShader.fs");
-	shadowMapHeight = shadowMapWidth = 1024;
-	lightPosition = glm::vec3(0.0f, 10.0f, 10.0f);
-	glGenFramebuffers(1, &shadowFBO);
-	glGenTextures(1, &depthMap);
-	glBindTexture(GL_TEXTURE_2D, depthMap);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, shadowMapWidth, shadowMapHeight, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-	float borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
-	// attach depth texture as FBO's depth buffer
-	glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
-	glDrawBuffer(GL_NONE);
-	glReadBuffer(GL_NONE);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+	lcShader = new Shader("Graphics/Shaders/lightCube.vs", "Graphics/Shaders/lightCube.fs");
+	
+	glGenVertexArrays(1, &lcVAO);
+	glGenBuffers(1, &lcVBO);
 
-	baseShader->Use();
-	baseShader->SetInt("diffuseTexture", 0);
-	baseShader->SetInt("shadowMap", 1);
+	glBindBuffer(GL_ARRAY_BUFFER, lcVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
 
-	//shadowShader->Use();
-	//shadowShader->SetInt("depthMap", 0);
+	glBindVertexArray(lcVAO);
+
+	// position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	// normal attribute
+//	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+//	glEnableVertexAttribArray(1);
 }
 
 

@@ -1,0 +1,78 @@
+﻿  GameLoop.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\pch.h(20,10): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+  Camera.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Graphics\Camera.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Mesh.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Graphics\Mesh.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Model.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Graphics\Model.cpp(5,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Shader.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Graphics\Shader.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Skybox.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Graphics\Skybox.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  stb_image.cpp
+  AssetManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\AssetManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  AudioManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\AudioManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  CollisionManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\CollisionManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  EventManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\EventManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  ContactEvent.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\Events\ContactEvent.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Event.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\Events\Event.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  FlockingManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\FlockingManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  FrameRateManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\FrameRateManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  GameManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\pch.h(20,10): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+  GraphicsManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  InputManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\InputManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Manager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\Manager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  PhysicsManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\PhysicsManager.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Generating Code...
+  Compiling...
+  Component.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Component.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  AudioComponent.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\AudioComponent.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Body.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  ControlComponent.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\ControlComponent.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Allignment.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocking\Allignment.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Cohesion.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocking\Cohesion.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Evade.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocking\Evade.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Separation.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocking\Separation.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  SphereMover.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocking\SphereMover.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Wander.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocking\Wander.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  ModelComponent.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\ModelComponent.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Flocker.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocker.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  OBB.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\OBB.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Shape.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Shape.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Sphere.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Sphere.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  Transform.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Transform.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  GameObject.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\GameObject.cpp(1,10): fatal error C1083: Cannot open include file: 'pch.h': No such file or directory
+  pch.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\pch.h(20,10): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+  Generating Code...

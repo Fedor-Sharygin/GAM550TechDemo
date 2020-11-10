@@ -239,6 +239,8 @@
   <ItemGroup>
     <None Include="Graphics\Shaders\debugShader.frag" />
     <None Include="Graphics\Shaders\debugShader.vert" />
+    <None Include="Graphics\Shaders\lightCube.fs" />
+    <None Include="Graphics\Shaders\lightCube.vs" />
     <None Include="Graphics\Shaders\mshader.fs" />
     <None Include="Graphics\Shaders\mshader.vs" />
     <None Include="Graphics\Shaders\shadowDepthShader.fs" />
