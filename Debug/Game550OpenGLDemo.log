@@ -1,5 +1,12 @@
-﻿  GameLoop.cpp
-  GameManager.cpp
+﻿  pch.cpp
+  GameLoop.cpp
+  Camera.cpp
+  Mesh.cpp
+  Model.cpp
+  Shader.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Graphics\Shader.cpp(31,36): warning C4101: 'e': unreferenced local variable
+  Skybox.cpp
+  AssetManager.cpp
   AudioManager.cpp
   CollisionManager.cpp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\CollisionManager.cpp(30,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -12,19 +19,28 @@ C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\CollisionMan
   EventManager.cpp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+  ContactEvent.cpp
+  Event.cpp
   FlockingManager.cpp
+  FrameRateManager.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\FrameRateManager.cpp(16,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\FrameRateManager.cpp(24,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\FrameRateManager.cpp(29,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\FrameRateManager.cpp(33,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  GameManager.cpp
   GraphicsManager.cpp
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(43,29): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(43,19): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(101,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(101,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(177,19): warning C4150: deletion of pointer to incomplete type 'GLFWwindow'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(157,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(157,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Managers\GraphicsManager.cpp(245,19): warning C4150: deletion of pointer to incomplete type 'GLFWwindow'; no destructor called
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\includes\GLFW\glfw3.h(1157): message : see declaration of 'GLFWwindow'
+  InputManager.cpp
   Manager.cpp
   PhysicsManager.cpp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
   Component.cpp
+  Generating Code...
+  Compiling...
   AudioComponent.cpp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
@@ -35,10 +51,6 @@ C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Bo
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\ControlComponent.cpp(60,118): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\ControlComponent.cpp(60,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\ControlComponent.cpp(61,62): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Flocker.cpp
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
-C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocker.cpp(53,14): warning C4244: 'initializing': conversion from 'glm::vec<3,float,glm::packed_highp>::length_type' to 'float', possible loss of data
   Allignment.cpp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
@@ -57,12 +69,18 @@ C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Bo
   Wander.cpp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
-  Generating Code...
-  Compiling...
   ModelComponent.cpp
+  Flocker.cpp
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(42,1): warning C4150: deletion of pointer to incomplete type 'Shape'; no destructor called
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Body.h(9): message : see declaration of 'Shape'
+C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\Components\Flocker.cpp(53,14): warning C4244: 'initializing': conversion from 'glm::vec<3,float,glm::packed_highp>::length_type' to 'float', possible loss of data
+  OBB.cpp
+  Shape.cpp
+  Sphere.cpp
   Transform.cpp
   GameObject.cpp
   Generating Code...
-  LINK : C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Debug\Game550OpenGLDemo.exe not found or not built by the last incremental link; performing full link
+  glad.c
+  stb_image.cpp
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Game550OpenGLDemo.vcxproj -> C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Debug\Game550OpenGLDemo.exe
