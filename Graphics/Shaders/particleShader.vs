@@ -6,9 +6,9 @@ out vec2 TexCoords;
 out vec4 ParticleColor;
 
 uniform vec3 position;
+uniform vec4 color;
 uniform mat4 view;
 uniform mat4 projection;
-uniform vec4 color;
 
 void main()
 {

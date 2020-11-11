@@ -10,16 +10,18 @@
 GameManager::GameManager()
 {
 	CTtoMT = {
-		{ COMPONENT_TYPE::TYPE_AUDIO,	std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
-		{ COMPONENT_TYPE::TYPE_BODY,	std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
-		{ COMPONENT_TYPE::TYPE_MODEL,	std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
-		{ COMPONENT_TYPE::TYPE_AI,		std::make_pair(MANAGER_TYPE::TYPE_FLOCKING_MANAGER, EVENT_TYPE::TYPE_DEFAULT) }
+		{ COMPONENT_TYPE::TYPE_AUDIO,					std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
+		{ COMPONENT_TYPE::TYPE_BODY,					std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
+		{ COMPONENT_TYPE::TYPE_MODEL,					std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_AI,						std::make_pair(MANAGER_TYPE::TYPE_FLOCKING_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_PARTICLE_EMITTER,		std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) }
 	};
 	nonEssentailUpdates = {
 		COMPONENT_TYPE::TYPE_AUDIO,
 		COMPONENT_TYPE::TYPE_BODY,
 		COMPONENT_TYPE::TYPE_MODEL,
-		COMPONENT_TYPE::TYPE_AI
+		COMPONENT_TYPE::TYPE_AI,
+		COMPONENT_TYPE::TYPE_PARTICLE_EMITTER
 	};
 
 	GraphicsManager* mGrManager = new GraphicsManager();
@@ -209,6 +211,7 @@ void GameManager::Demo(size_t size)
 		Transform* fBdTrans = this->AddComponentTo<Transform>(gameObjects[26]);
 		Body* fBdBody = this->AddComponentTo<Body>(gameObjects[26]);
 		AudioComponent* fBdSfx = this->AddComponentTo<AudioComponent>(gameObjects[26]);
+		ParticleEmitter* fPrtEmtr = this->AddComponentTo<ParticleEmitter>(gameObjects[26]);
 
 		fBdModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 		fBdModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
@@ -228,6 +231,9 @@ void GameManager::Demo(size_t size)
 		fBdSfx->SetSound("seeds.wav", FMOD_3D | FMOD_LOOP_OFF);
 		fBdSfx->SetChannelName("soundEffects");
 		fBdSfx->SetAudioType(AUDIO_TYPE::TYPE_SFX);
+
+		fPrtEmtr->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		fPrtEmtr->Initialize();
 
 
 		ModelComponent* sBdModComp = this->AddComponentTo<ModelComponent>(gameObjects[27]);

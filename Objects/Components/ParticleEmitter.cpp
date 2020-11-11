@@ -10,6 +10,7 @@
 
 ParticleEmitter::ParticleEmitter(unsigned int nAmount, unsigned int nSpawnRate, std::string nParticleTexture)
 	:
+	Component(COMPONENT_TYPE::TYPE_PARTICLE_EMITTER),
 	particleAmount(nAmount),
 	spawnRate(nSpawnRate),
 	particleTextureName(nParticleTexture),
@@ -111,6 +112,7 @@ void ParticleEmitter::Draw(Shader* pShader)
 		{
 			pShader->setVec3("position", particle.position);
 			pShader->setVec4("color", particle.color);
+			glUniform1i(glGetUniformLocation(pShader->ID, "particleTexture"), 0);
 			glBindTexture(GL_TEXTURE_2D, particleTexture);
 			glBindVertexArray(particleVAO);
 			glDrawArrays(GL_TRIANGLES, 0, 6);

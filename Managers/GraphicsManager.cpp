@@ -5,6 +5,7 @@
 #include "..//Graphics//Camera.h"
 #include "..//Graphics//Skybox.h"
 #include "..//Objects//Components//ModelComponent.h"
+#include "..//Objects//Components//ParticleEmitter.h"
 
 #include "InputManager.h"
 
@@ -93,9 +94,13 @@ void GraphicsManager::Update(float dt)
 
 	for (auto& co : comps)
 	{
-		static_cast<ModelComponent*>(co)->Draw(baseShader);
+		if (COMPONENT_TYPE::TYPE_PARTICLE_EMITTER != co->cType)
+		{
+			static_cast<ModelComponent*>(co)->Draw(baseShader);
+		}
 	}
 
+	/// Draw the light cube
 	lcShader->Use();
 	lcShader->setMat4("projection", projection);
 	lcShader->setMat4("view", view);
@@ -107,6 +112,18 @@ void GraphicsManager::Update(float dt)
 	glBindVertexArray(lcVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
+	/// Draw particles
+	particleShader->Use();
+	particleShader->setMat4("projection", projection);
+	particleShader->setMat4("view", view);
+	for (auto& part : comps)
+	{
+		if (COMPONENT_TYPE::TYPE_PARTICLE_EMITTER == part->cType)
+		{
+			static_cast<ParticleEmitter*>(part)->Draw(particleShader);
+			part->Update(dt);
+		}
+	}
 
 	/// Change the depth test to draw
 	/// the skybox as if it was far away
@@ -202,9 +219,8 @@ void GraphicsManager::Initialize()
 	// position attribute
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	// normal attribute
-//	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-//	glEnableVertexAttribArray(1);
+
+	particleShader = new Shader("Graphics/Shaders/particleShader.vs", "Graphics/Shaders/particleShader.fs");
 }
 
 
