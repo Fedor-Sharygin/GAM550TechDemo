@@ -10,6 +10,7 @@
 #include "ControlComponent.h"
 #include "Body.h"
 #include "Flocker.h"
+#include "ParticleEmitter.h"
 
 #endif
 

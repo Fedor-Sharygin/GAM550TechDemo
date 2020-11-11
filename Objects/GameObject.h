@@ -83,7 +83,13 @@ public:
 		nFl->SetOwner(this);
 		goComponents[std::type_index(typeid(Flocker))] = nFl;
 		return nFl;
-	}
+	};
+
+/*	template<>
+	ParticleEmitter* AddComponent<ParticleEmitter>()
+	{
+		ParticleEmitter* nPE = new ParticleEmitter(200, "spark.jpg");
+	};*/
 
 	template<typename TComp>
 	TComp* GetComponent()

@@ -77,13 +77,13 @@ void GraphicsManager::Update(float dt)
 	lightColor.y = sin(colorTime * 0.7f);
 	lightColor.z = sin(colorTime * 1.3f);
 	glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
-	glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
+	glm::vec3 ambientColor = diffuseColor * glm::vec3(2.2f); // high influence
 	baseShader->setVec3("light.ambient", ambientColor);
 	baseShader->setVec3("light.diffuse", diffuseColor);
 	baseShader->setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
 	// material properties
-	baseShader->SetFloat("material.shininess", 64.0f);
+	baseShader->SetFloat("material.shininess", 8.0f);
 
 	// view/projection transformations
 	glm::mat4 projection = glm::perspective(glm::radians(baseCamera->Zoom), (float)scrWidth / (float)scrHeight, 0.1f, 100.0f);

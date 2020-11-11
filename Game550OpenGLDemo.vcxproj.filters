@@ -132,6 +132,9 @@
     <ClCompile Include="Managers\FlockingManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Components\ParticleEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -257,6 +260,9 @@
     <ClInclude Include="Managers\FlockingManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Components\ParticleEmitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Graphics\Shaders\mshader.fs" />
@@ -275,5 +281,7 @@
     <None Include="Graphics\Shaders\shadowDepthShader.fs" />
     <None Include="Graphics\Shaders\lightCube.vs" />
     <None Include="Graphics\Shaders\lightCube.fs" />
+    <None Include="Graphics\Shaders\particleShader.fs" />
+    <None Include="Graphics\Shaders\particleShader.vs" />
   </ItemGroup>
 </Project>
