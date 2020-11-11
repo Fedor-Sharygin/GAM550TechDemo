@@ -20,8 +20,6 @@ public:
 	void PassLoader(AssetManager* nLoader);
 
 	void LoadFaces();
-
-	unsigned int LoadCubemap(std::vector<std::string> textures);
 public:
 private:
 private:

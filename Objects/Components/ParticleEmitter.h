@@ -17,7 +17,8 @@ struct Particle
 	Particle()
 		:
 		position(glm::vec3(0.0f)),	velocity(glm::vec3(0.0f)),
-		color(glm::vec4(0.0f)),		lifeTime(1.0f)
+		color(glm::vec4(0.0f)),		lifeTime(-1.0f)	/// negative, so that they are not alive
+													/// when they are first created
 	{};
 };
 

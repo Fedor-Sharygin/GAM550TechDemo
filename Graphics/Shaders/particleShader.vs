@@ -1,6 +1,6 @@
 #version 330 core
 layout (location = 0) in vec3 aPos;
-layout (location = 2) in vec2 aTexCoords;
+layout (location = 1) in vec2 aTexCoords;
 
 out vec2 TexCoords;
 out vec4 ParticleColor;
@@ -15,6 +15,6 @@ void main()
     TexCoords = aTexCoords;
     ParticleColor = color;
     
-    gl_Position = projection * view * vec4(position * aPos, 1.0);
+    gl_Position = projection * view * vec4(position + aPos, 1.0);
 }
 

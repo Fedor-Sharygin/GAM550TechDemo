@@ -152,11 +152,11 @@ unsigned int ParticleEmitter::FirstUnusedParticle()
 
 void ParticleEmitter::RespawnParticle(Particle& cParticle)
 {
-	float rColor = 0.5f + ((std::rand() % 100) / 100.0f);
-	float rVelocity = 1.0f + ((std::rand() % 200 + 100) / 100.0f);
+//	float rColor = 0.5f + ((std::rand() % 100) / 100.0f);
+	float rVelocity = ((std::rand() % 201 - 100) / 100.0f);
 
 	cParticle.position = this->GetOwner()->GetComponent<Transform>()->GetPosition();
-	cParticle.color = glm::vec4(rColor, rColor, rColor, 1.0f);
+	cParticle.color = glm::vec4(0.1f, 0.1f, 0.1f, 1.0f);
 	cParticle.lifeTime = 1.0f;
 	cParticle.velocity = glm::vec3(rVelocity);
 }
