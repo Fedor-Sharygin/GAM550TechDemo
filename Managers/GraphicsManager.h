@@ -48,6 +48,9 @@ public:
 	unsigned int lcVBO, lcVAO;
 	float cubeVertices[3 * 6 * 6];
 	float colorTime;
+
+	/// Particle attributes
+	Shader* particleShader;
 private:
 private:
 	float scrWidth;

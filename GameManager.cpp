@@ -10,16 +10,18 @@
 GameManager::GameManager()
 {
 	CTtoMT = {
-		{ COMPONENT_TYPE::TYPE_AUDIO,	std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
-		{ COMPONENT_TYPE::TYPE_BODY,	std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
-		{ COMPONENT_TYPE::TYPE_MODEL,	std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
-		{ COMPONENT_TYPE::TYPE_AI,		std::make_pair(MANAGER_TYPE::TYPE_FLOCKING_MANAGER, EVENT_TYPE::TYPE_DEFAULT) }
+		{ COMPONENT_TYPE::TYPE_AUDIO,					std::make_pair(MANAGER_TYPE::TYPE_AUDIO_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
+		{ COMPONENT_TYPE::TYPE_BODY,					std::make_pair(MANAGER_TYPE::TYPE_PHYSICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) },
+		{ COMPONENT_TYPE::TYPE_MODEL,					std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_AI,						std::make_pair(MANAGER_TYPE::TYPE_FLOCKING_MANAGER, EVENT_TYPE::TYPE_DEFAULT) },
+		{ COMPONENT_TYPE::TYPE_PARTICLE_EMITTER,		std::make_pair(MANAGER_TYPE::TYPE_GRAPHICS_MANAGER, EVENT_TYPE::TYPE_CONTACT) }
 	};
 	nonEssentailUpdates = {
 		COMPONENT_TYPE::TYPE_AUDIO,
 		COMPONENT_TYPE::TYPE_BODY,
 		COMPONENT_TYPE::TYPE_MODEL,
-		COMPONENT_TYPE::TYPE_AI
+		COMPONENT_TYPE::TYPE_AI,
+		COMPONENT_TYPE::TYPE_PARTICLE_EMITTER
 	};
 
 	AssetManager* mAssetManager = new AssetManager();
@@ -218,10 +220,11 @@ void GameManager::Demo(size_t size)
 
 			fModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 			fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
-			fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
+			//fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
+			fModComp->SetModel("myConeN1.fbx");
 
 			fTrans->SetPosition(glm::vec3(float(i % 4) * 10.0f - 15.0f, 0.0f, -20.0f - float(i / 4) * 5.0f));
-			fTrans->SetScale(glm::vec3((1.0f / 10.0f)));
+			fTrans->SetScale(glm::vec3((1.0f / 1.0f)));
 
 			fFlock->PassOwner(static_cast<FlockingManager*>(gameManagers[MANAGER_TYPE::TYPE_FLOCKING_MANAGER]));
 		}
@@ -242,10 +245,12 @@ void GameManager::Demo(size_t size)
 		Transform* fBdTrans = this->AddComponentTo<Transform>(gameObjects[26]);
 		Body* fBdBody = this->AddComponentTo<Body>(gameObjects[26]);
 		AudioComponent* fBdSfx = this->AddComponentTo<AudioComponent>(gameObjects[26]);
+		ParticleEmitter* fPrtEmtr = this->AddComponentTo<ParticleEmitter>(gameObjects[26]);
 
 		fBdModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 		fBdModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
-		fBdModComp->SetModel("sara/sara-20110310-blender/Sara_20110310.obj");		/// find a model online and pass the name
+		//fBdModComp->SetModel("sara/sara-20110310-blender/Sara_20110310.obj");		/// find a model online and pass the name
+		fBdModComp->SetModel("myGreenSphere.fbx");
 
 		fBdTrans->SetPosition(glm::vec3(-30.0f, 20.0f, -20.0f));
 		fBdTrans->SetScale(glm::vec3((1.0f / 5.0f)));
@@ -261,6 +266,9 @@ void GameManager::Demo(size_t size)
 		fBdSfx->SetSound("seeds.wav", FMOD_3D | FMOD_LOOP_OFF);
 		fBdSfx->SetChannelName("soundEffects");
 		fBdSfx->SetAudioType(AUDIO_TYPE::TYPE_SFX);
+
+		fPrtEmtr->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
+		fPrtEmtr->Initialize();
 
 
 		ModelComponent* sBdModComp = this->AddComponentTo<ModelComponent>(gameObjects[27]);

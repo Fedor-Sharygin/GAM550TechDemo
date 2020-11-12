@@ -6,6 +6,7 @@
 #include "Component.h"
 #include "Components//Flocker.h"
 #include "Components//Transform.h"
+#include "Components//ParticleEmitter.h"
 
 class GameObject
 {
@@ -83,7 +84,22 @@ public:
 		nFl->SetOwner(this);
 		goComponents[std::type_index(typeid(Flocker))] = nFl;
 		return nFl;
-	}
+	};
+
+	template<>
+	ParticleEmitter* AddComponent<ParticleEmitter>()
+	{
+		if (goComponents.end() != goComponents.find(std::type_index(typeid(ParticleEmitter))))
+		{
+			auto a = goComponents[std::type_index(typeid(ParticleEmitter))];
+			return static_cast<ParticleEmitter*>(a);
+		}
+
+		ParticleEmitter* nPE = new ParticleEmitter(200, 30, "sparkN.png");
+		nPE->SetOwner(this);
+		goComponents[std::type_index(typeid(ParticleEmitter))] = nPE;
+		return nPE;
+	};
 
 	template<typename TComp>
 	TComp* GetComponent()

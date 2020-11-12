@@ -193,6 +193,7 @@
     <ClCompile Include="Objects\Components\ModelComponent.cpp" />
     <ClCompile Include="Objects\Components\Flocker.cpp" />
     <ClCompile Include="Objects\Components\OBB.cpp" />
+    <ClCompile Include="Objects\Components\ParticleEmitter.cpp" />
     <ClCompile Include="Objects\Components\Shape.cpp" />
     <ClCompile Include="Objects\Components\Sphere.cpp" />
     <ClCompile Include="Objects\Components\Transform.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="Objects\Components\ModelComponent.h" />
     <ClInclude Include="Objects\Components\Flocker.h" />
     <ClInclude Include="Objects\Components\OBB.h" />
+    <ClInclude Include="Objects\Components\ParticleEmitter.h" />
     <ClInclude Include="Objects\Components\Shape.h" />
     <ClInclude Include="Objects\Components\Shapes.h" />
     <ClInclude Include="Objects\Components\Sphere.h" />
@@ -254,6 +256,8 @@
     <None Include="Graphics\Shaders\lightCube.vs" />
     <None Include="Graphics\Shaders\mshader.fs" />
     <None Include="Graphics\Shaders\mshader.vs" />
+    <None Include="Graphics\Shaders\particleShader.fs" />
+    <None Include="Graphics\Shaders\particleShader.vs" />
     <None Include="Graphics\Shaders\shadowDepthShader.fs" />
     <None Include="Graphics\Shaders\shadowDepthShader.vs" />
     <None Include="Graphics\Shaders\shadowMappingDepth.fs" />
