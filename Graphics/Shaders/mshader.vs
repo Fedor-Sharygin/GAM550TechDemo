@@ -15,9 +15,15 @@ void main()
 {
     FragPos = vec3(model * vec4(aPos, 1.0));
 <<<<<<< HEAD
+<<<<<<< HEAD
     Normal = mat3(transpose(inverse(model))) * aNormal;  
     TexCoords = aTexCoords;
     
+=======
+    Normal = mat3(transpose(inverse(model))) * aNormal;
+    TexCoords = aTexCoords;
+
+>>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643
 =======
     Normal = mat3(transpose(inverse(model))) * aNormal;
     TexCoords = aTexCoords;

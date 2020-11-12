@@ -250,13 +250,8 @@
     <None Include="Graphics\Shaders\debugQuad.vs" />
     <None Include="Graphics\Shaders\debugShader.frag" />
     <None Include="Graphics\Shaders\debugShader.vert" />
-<<<<<<< HEAD
     <None Include="Graphics\Shaders\lightCube.fs" />
     <None Include="Graphics\Shaders\lightCube.vs" />
-=======
-    <None Include="Graphics\Shaders\lightCubeShader.fs" />
-    <None Include="Graphics\Shaders\lightCubeShader.vs" />
->>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643
     <None Include="Graphics\Shaders\mshader.fs" />
     <None Include="Graphics\Shaders\mshader.vs" />
     <None Include="Graphics\Shaders\shadowDepthShader.fs" />

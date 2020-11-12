@@ -2,6 +2,7 @@
 out vec4 FragColor;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct Material {
     sampler2D diffuse;
     sampler2D specular;    
@@ -21,6 +22,8 @@ in vec3 Normal;
 in vec2 TexCoords;
   
 =======
+=======
+>>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643
 struct Material
 {
 	sampler2D diffuse;
@@ -41,6 +44,9 @@ in vec3 Normal;
 in vec3 FragPos;
 in vec2 TexCoords;
 
+<<<<<<< HEAD
+>>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643
+=======
 >>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643
 uniform vec3 viewPos;
 uniform Material material;
@@ -48,6 +54,7 @@ uniform Light light;
 
 void main()
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
     // ambient
     vec3 ambient = light.ambient * texture(material.diffuse, TexCoords).rgb;
@@ -68,6 +75,8 @@ void main()
     FragColor = vec4(result, 1.0);
 } 
 =======
+=======
+>>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643
 	/// ambient part of light
 	vec3 ambient = light.ambient * texture(material.diffuse, TexCoords).rgb;
 

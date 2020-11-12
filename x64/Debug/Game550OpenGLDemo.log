@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿  GameLoop.cpp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\pch.h(20,10): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
   Camera.cpp
@@ -78,6 +79,8 @@ C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\Objects\GameObject.cp
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\pch.h(20,10): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
   Generating Code...
 =======
+=======
+>>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643
 ﻿  pch.cpp
   Camera.cpp
   Mesh.cpp
@@ -215,4 +218,7 @@ ControlComponent.obj : error LNK2019: unresolved external symbol glfwSetWindowSh
 .\libraries\fmod_vc.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
 .\libraries\fmodL_vc.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
 C:\Users\teldy\Documents\DigiPen\game550\Game550OpenGLDemo\x64\Debug\Game550OpenGLDemo.exe : fatal error LNK1120: 32 unresolved externals
+<<<<<<< HEAD
+>>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643
+=======
 >>>>>>> c561e23f51fcef73f0bc14f7d32dc598985e3643

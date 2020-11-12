@@ -55,7 +55,6 @@ void Mesh::Draw(Shader* shader)
 	for (unsigned int i = 0; i < textures.size(); i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i);
-		std::string materialName = "material.";
 		std::string number;
 		std::string materialName = "material.";
 		std::string name = textures[i].type;
