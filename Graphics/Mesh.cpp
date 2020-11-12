@@ -4,11 +4,22 @@
 #include "Shader.h"
 
 
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
+Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures, aiColor3D nColorDiff, float nAlpha, aiColor3D nColorSpec, bool trTextures)
 {
 	this->vertices = vertices;
 	this->indices = indices;
 	this->textures = textures;
+
+	colorDiffuse.r = nColorDiff.r;
+	colorDiffuse.g = nColorDiff.g;
+	colorDiffuse.b = nColorDiff.b;
+	colorDiffuse.a = nAlpha;
+
+	colorSpecular.r = nColorSpec.r;
+	colorSpecular.g = nColorSpec.g;
+	colorSpecular.b = nColorSpec.b;
+
+	areTexturesUsed = trTextures;
 
 	setupMesh();
 }
@@ -82,6 +93,11 @@ void Mesh::Draw(Shader* shader)
 		glUniform1i(glGetUniformLocation(shader->ID, (materialName + name/* + number*/).c_str()), i);
 		glBindTexture(GL_TEXTURE_2D, textures[i].id);
 	}
+
+	shader->SetVec4("material.colorDiffuse", colorDiffuse);
+	shader->SetVec3("material.colorSpecular", colorSpecular);
+
+	shader->SetBool("textureMaterial", areTexturesUsed);
 
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);

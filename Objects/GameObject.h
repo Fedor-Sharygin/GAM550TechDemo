@@ -95,7 +95,7 @@ public:
 			return static_cast<ParticleEmitter*>(a);
 		}
 
-		ParticleEmitter* nPE = new ParticleEmitter(200, 30, "awesomeface.png");
+		ParticleEmitter* nPE = new ParticleEmitter(200, 30, "sparkN.png");
 		nPE->SetOwner(this);
 		goComponents[std::type_index(typeid(ParticleEmitter))] = nPE;
 		return nPE;

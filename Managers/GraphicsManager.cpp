@@ -69,8 +69,8 @@ void GraphicsManager::Update(float dt)
 	colorTime += dt;
 
 	baseShader->Use();
-	baseShader->setVec3("light.position", lightPosition);
-	baseShader->setVec3("viewPos", baseCamera->Position);
+	baseShader->SetVec3("light.position", lightPosition);
+	baseShader->SetVec3("viewPos", baseCamera->Position);
 
 	// light properties
 	glm::vec3 lightColor;
@@ -79,9 +79,9 @@ void GraphicsManager::Update(float dt)
 	lightColor.z = sin(colorTime * 1.3f);
 	glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
 	glm::vec3 ambientColor = diffuseColor * glm::vec3(2.2f); // high influence
-	baseShader->setVec3("light.ambient", ambientColor);
-	baseShader->setVec3("light.diffuse", diffuseColor);
-	baseShader->setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+	baseShader->SetVec3("light.ambient", ambientColor);
+	baseShader->SetVec3("light.diffuse", diffuseColor);
+	baseShader->SetVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
 	// material properties
 	baseShader->SetFloat("material.shininess", 8.0f);
@@ -142,8 +142,6 @@ void GraphicsManager::FrameStart()
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	baseShader->Use();
-/// Used for reflections => not now
-//	baseShader->SetInt("skybox", 0);
 	sbShader->Use();
 	sbShader->SetInt("skybox", 0);
 }
@@ -162,7 +160,6 @@ void GraphicsManager::Initialize()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	baseWindow = glfwCreateWindow(scrWidth, scrHeight, "GAM550Demo", nullptr, nullptr);
 	if (nullptr == baseWindow)
@@ -188,6 +185,7 @@ void GraphicsManager::Initialize()
 	// configure global opengl state
 	// -----------------------------
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
 
 	baseShader = new Shader("Graphics/Shaders/mshader.vs", "Graphics/Shaders/mshader.fs");
 	baseCamera = new Camera(glm::vec3(0.0f, 0.0f, 3.0f));

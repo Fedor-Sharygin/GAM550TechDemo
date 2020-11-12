@@ -187,10 +187,11 @@ void GameManager::Demo(size_t size)
 
 			fModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 			fModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
-			fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
+			//fModComp->SetModel("nanosuit/nanosuit.obj");		/// find a model online and pass the name
+			fModComp->SetModel("myConeN1.fbx");
 
 			fTrans->SetPosition(glm::vec3(float(i % 4) * 10.0f - 15.0f, 0.0f, -20.0f - float(i / 4) * 5.0f));
-			fTrans->SetScale(glm::vec3((1.0f / 10.0f)));
+			fTrans->SetScale(glm::vec3((1.0f / 1.0f)));
 
 			fFlock->PassOwner(static_cast<FlockingManager*>(gameManagers[MANAGER_TYPE::TYPE_FLOCKING_MANAGER]));
 		}
@@ -215,7 +216,8 @@ void GameManager::Demo(size_t size)
 
 		fBdModComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 		fBdModComp->PassDrawer(static_cast<GraphicsManager*>(gameManagers[MANAGER_TYPE::TYPE_GRAPHICS_MANAGER]));
-		fBdModComp->SetModel("sara/sara-20110310-blender/Sara_20110310.obj");		/// find a model online and pass the name
+		//fBdModComp->SetModel("sara/sara-20110310-blender/Sara_20110310.obj");		/// find a model online and pass the name
+		fBdModComp->SetModel("myGreenSphere.fbx");
 
 		fBdTrans->SetPosition(glm::vec3(-30.0f, 20.0f, -20.0f));
 		fBdTrans->SetScale(glm::vec3((1.0f / 5.0f)));

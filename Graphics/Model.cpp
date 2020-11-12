@@ -106,7 +106,16 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 	std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
 	textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
-	return Mesh(vertices, indices, textures);
+	bool texturesAreUsed = (false == textures.empty());
+
+	aiColor3D color(0.f, 0.f, 0.f);
+	material->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+	float alpha;
+	material->Get(AI_MATKEY_OPACITY, alpha);
+	aiColor3D colorS(0.0f, 0.0f, 0.0f);
+	material->Get(AI_MATKEY_COLOR_SPECULAR, colorS);
+
+	return Mesh(vertices, indices, textures, color, alpha, colorS, texturesAreUsed);
 }
 
 std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)

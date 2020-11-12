@@ -35,7 +35,7 @@ class Mesh {
 public:
 	/*  Functions  */
 	// constructor
-	Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
+	Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures, aiColor3D nColorDiff, float nAlpha, aiColor3D nColorSpec, bool trTextures);
 
 	// render the mesh
 	void Draw(Shader* shader);
@@ -44,6 +44,9 @@ public:
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 	std::vector<Texture> textures;
+	glm::vec4 colorDiffuse;
+	glm::vec3 colorSpecular;
+	bool areTexturesUsed;
 	unsigned int VAO;
 private:
 	/*  Functions    */
