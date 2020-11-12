@@ -231,7 +231,7 @@ void GameManager::Demo(size_t size)
 		AudioComponent* sAudComp = this->AddComponentTo<AudioComponent>(gameObjects[24]);
 		sAudComp->PassLoader(static_cast<AssetManager*>(gameManagers[MANAGER_TYPE::TYPE_ASSET_MANAGER]));
 		sAudComp->PassMediaPlayer(static_cast<AudioManager*>(gameManagers[MANAGER_TYPE::TYPE_AUDIO_MANAGER]));
-		sAudComp->SetSound("sample.wav", FMOD_LOOP_NORMAL);
+		sAudComp->SetSound("loopermanDisco.wav", FMOD_LOOP_NORMAL);
 		sAudComp->SetChannelName("sampleMusic");
 		sAudComp->SetAudioType(AUDIO_TYPE::TYPE_MUSIC);
 

@@ -196,12 +196,12 @@ void GraphicsManager::Initialize()
 
 	std::vector<std::string> faces
 	{
-		"skybox/right.jpg",
-		"skybox/left.jpg",
-		"skybox/top.jpg",
-		"skybox/bottom.jpg",
-		"skybox/front.jpg",
-		"skybox/back.jpg"
+		"discoSkybox/discoRight.jpg",
+		"discoSkybox/discoLeft.jpg",
+		"discoSkybox/discoTop.jpg",
+		"discoSkybox/discoBottom.jpg",
+		"discoSkybox/discoFront.jpg",
+		"discoSkybox/discoBack.jpg"
 	};
 	skybox = new Skybox(faces);
 	skybox->PassDrawer(this);
